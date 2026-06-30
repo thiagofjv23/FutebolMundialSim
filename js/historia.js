@@ -14,9 +14,9 @@ const Historia = (() => {
     const titulosPorClube = {}; // { club_id: count }
     let recMaisPts = null, recMaisV = null, recMelhorSG = null, recMaisGP = null;
 
-    // Gols por player_id → { nome, gols } (all-time e por ano)
-    const golsMap     = {};  // { player_id|nome: { nome, gols } }
-    const golsMapAno  = {};  // { ano: { player_id|nome: { nome, gols } } }
+    // Gols por player_id → { nome, gols, clubesGols } (all-time e por ano)
+    const golsMap     = {};  // { player_id|nome: { nome, gols, clubesGols: { club_id: count } } }
+    const golsMapAno  = {};  // { ano: { player_id|nome: { nome, gols, clubesGols: { club_id: count } } } }
 
     Mundo.torneios.forEach(t => {
       if (!t.campeao) return; // torneio ainda não encerrado
@@ -43,10 +43,14 @@ const Historia = (() => {
         if (!f.resultado) return;
         f.resultado.artilheiros.forEach(a => {
           const chave = a.player_id != null ? String(a.player_id) : a.nome;
-          if (!golsMap[chave])    golsMap[chave]           = { nome: a.nome, gols: 0 };
-          if (!golsMapAno[t.ano][chave]) golsMapAno[t.ano][chave] = { nome: a.nome, gols: 0 };
+          if (!golsMap[chave])           golsMap[chave]           = { nome: a.nome, gols: 0, clubesGols: {} };
+          if (!golsMapAno[t.ano][chave]) golsMapAno[t.ano][chave] = { nome: a.nome, gols: 0, clubesGols: {} };
           golsMap[chave].gols++;
           golsMapAno[t.ano][chave].gols++;
+          if (a.club_id != null) {
+            golsMap[chave].clubesGols[a.club_id] = (golsMap[chave].clubesGols[a.club_id] || 0) + 1;
+            golsMapAno[t.ano][chave].clubesGols[a.club_id] = (golsMapAno[t.ano][chave].clubesGols[a.club_id] || 0) + 1;
+          }
         });
       });
     });
@@ -60,7 +64,9 @@ const Historia = (() => {
     const artilheirosPorAno = Object.entries(golsMapAno)
       .map(([ano, mapa]) => {
         const top = Object.values(mapa).sort((a, b) => b.gols - a.gols)[0];
-        return { ano: +ano, nome: top?.nome || '—', gols: top?.gols || 0 };
+        if (!top) return { ano: +ano, nome: '—', gols: 0, topClubeId: null };
+        const topClubeEntry = Object.entries(top.clubesGols || {}).sort(([, a], [, b]) => b - a)[0];
+        return { ano: +ano, nome: top.nome, gols: top.gols, topClubeId: topClubeEntry ? +topClubeEntry[0] : null };
       })
       .sort((a, b) => b.ano - a.ano);
 
@@ -263,18 +269,35 @@ const Historia = (() => {
 
   // ─── TAB: ARTILHEIROS ─────────────────────────────────────────────────────
 
-  function _renderTabArtilheiros(stats) {
-    const linhasGeral = stats.artilheirosGeral.map(({ nome, gols }, i) => `<tr>
-      <td style="color:var(--text-muted)">${i + 1}</td>
-      <td class="col-nome" style="text-align:left">${nome}</td>
-      <td style="font-weight:700;color:var(--green)">${gols}</td>
-    </tr>`).join('');
+  function _formatarClubesArtilheiro(clubesGols) {
+    if (!clubesGols) return '';
+    const sorted = Object.entries(clubesGols)
+      .sort(([, a], [, b]) => b - a)
+      .map(([id]) => Mundo.clubes.get(+id)?.nome || `Clube ${id}`);
+    if (!sorted.length) return '';
+    if (sorted.length === 1) return `(${sorted[0]})`;
+    if (sorted.length === 2) return `(${sorted[0]} e ${sorted[1]})`;
+    return `(${sorted[0]}, ${sorted[1]} e mais ${sorted.length - 2})`;
+  }
 
-    const linhasPorAno = stats.artilheirosPorAno.map(({ ano, nome, gols }) => `<tr>
-      <td>${ano}</td>
-      <td class="col-nome" style="text-align:left">${nome}</td>
-      <td style="color:var(--green)">${gols}</td>
-    </tr>`).join('');
+  function _renderTabArtilheiros(stats) {
+    const linhasGeral = stats.artilheirosGeral.map(({ nome, gols, clubesGols }, i) => {
+      const clubesTxt = _formatarClubesArtilheiro(clubesGols);
+      return `<tr>
+        <td style="color:var(--text-muted)">${i + 1}</td>
+        <td class="col-nome" style="text-align:left">${nome}${clubesTxt ? ` <small style="color:var(--text-muted)">${clubesTxt}</small>` : ''}</td>
+        <td style="font-weight:700;color:var(--green)">${gols}</td>
+      </tr>`;
+    }).join('');
+
+    const linhasPorAno = stats.artilheirosPorAno.map(({ ano, nome, gols, topClubeId }) => {
+      const nomeClube = topClubeId ? Mundo.clubes.get(topClubeId)?.nome : null;
+      return `<tr>
+        <td>${ano}</td>
+        <td class="col-nome" style="text-align:left">${nome}${nomeClube ? ` <small style="color:var(--text-muted)">(${nomeClube})</small>` : ''}</td>
+        <td style="color:var(--green)">${gols}</td>
+      </tr>`;
+    }).join('');
 
     const semDados = '<tr><td colspan="3" class="sem-dados" style="padding:14px;text-align:center">Sem dados disponíveis.</td></tr>';
 
