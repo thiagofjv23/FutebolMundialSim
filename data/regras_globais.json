@@ -1,0 +1,88 @@
+{
+  "eras": [
+    {
+      "nome": "ERA_AMADORA",
+      "nome_jornalismo": "Cronista Esportivo dos Anos 20",
+      "anoInicio": 1870,
+      "anoFim": 1932,
+      "restricaoTransferencia": {
+        "raioMaxKm": 500,
+        "valorMax": 50,
+        "restricaoRegional": true
+      },
+      "fatorCaos": 0.35,
+      "idadeAposentadoria": 35,
+      "crescimentoTorcida": 0.02,
+      "fatorEscalaFinanceira": 0.001,
+      "xGBase": 1.5
+    },
+    {
+      "nome": "ERA_PROFISSIONAL_INICIAL",
+      "nome_jornalismo": "Repórter Esportivo dos Anos 30 a 50",
+      "anoInicio": 1933,
+      "anoFim": 1969,
+      "restricaoTransferencia": {
+        "raioMaxKm": 5000,
+        "valorMax": 50000,
+        "restricaoRegional": false
+      },
+      "fatorCaos": 0.28,
+      "idadeAposentadoria": 36,
+      "crescimentoTorcida": 0.04,
+      "fatorEscalaFinanceira": 0.1,
+      "xGBase": 1.7
+    },
+    {
+      "nome": "ERA_MODERNA",
+      "nome_jornalismo": "Jornalista Esportivo Contemporâneo",
+      "anoInicio": 1970,
+      "anoFim": 9999,
+      "restricaoTransferencia": {
+        "raioMaxKm": 99999,
+        "valorMax": 999999999,
+        "restricaoRegional": false
+      },
+      "fatorCaos": 0.22,
+      "idadeAposentadoria": 38,
+      "crescimentoTorcida": 0.06,
+      "fatorEscalaFinanceira": 1.0,
+      "xGBase": 1.6
+    }
+  ],
+  "matrizRivalidade": [
+    { "clube_a": 101, "clube_b": 102, "intensidade": 80 },
+    { "clube_a": 101, "clube_b": 103, "intensidade": 75 },
+    { "clube_a": 101, "clube_b": 106, "intensidade": 70 },
+    { "clube_a": 102, "clube_b": 103, "intensidade": 85 },
+    { "clube_a": 102, "clube_b": 106, "intensidade": 75 },
+    { "clube_a": 103, "clube_b": 104, "intensidade": 65 },
+    { "clube_a": 201, "clube_b": 203, "intensidade": 85 },
+    { "clube_a": 201, "clube_b": 202, "intensidade": 70 },
+    { "clube_a": 202, "clube_b": 203, "intensidade": 90 }
+  ],
+  "coordenadasEstados": {
+    "21": { "nome": "Rio de Janeiro", "lat": -22.9, "lon": -43.1 },
+    "25": { "nome": "São Paulo", "lat": -23.5, "lon": -46.6 }
+  },
+  "nomesRegens": {
+    "masculinos": [
+      "José", "João", "Antônio", "Francisco", "Pedro", "Manuel", "Luís", "Carlos",
+      "Paulo", "Mário", "Osvaldo", "Raul", "Nilo", "Artur", "Edmundo", "Waldemar",
+      "Albino", "Cícero", "Benedito", "Henrique", "Augusto", "Ernesto", "Alfredo",
+      "Abelardo", "Rubens", "Olavo", "Silvio", "Geraldo", "Heitor", "Euclides",
+      "Domingos", "Alberto", "Sebastião", "Narciso", "Rodolfo", "Armando", "Nestor",
+      "Olegário", "Aníbal", "Clóvis", "Lauro", "Décio", "Valter", "Edgard", "Hygino",
+      "Ataliba", "Belmiro", "Custódio", "Delfino", "Elias"
+    ],
+    "sobrenomes": [
+      "Silva", "Santos", "Oliveira", "Souza", "Costa", "Pereira", "Ferreira",
+      "Alves", "Rodrigues", "Martins", "Carvalho", "Gomes", "Lima", "Ribeiro",
+      "Almeida", "Nascimento", "Barbosa", "Cardoso", "Araújo", "Dias",
+      "Mendonça", "Azevedo", "Moreira", "Nunes", "Vieira", "Correia", "Moraes",
+      "Cunha", "Ramos", "Teixeira", "Andrade", "Freitas", "Machado", "Guimarães",
+      "Antunes", "Pinto", "Castro", "Campos", "Braga", "Mello",
+      "Cavalcante", "Figueiredo", "Monteiro", "Leite", "Lopes", "Fernandes",
+      "Borges", "Rocha", "Nogueira", "Vasconcellos"
+    ]
+  }
+}

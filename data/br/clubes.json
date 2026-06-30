@@ -1,0 +1,310 @@
+[
+  {
+    "club_id": 101,
+    "nome": "Fluminense Football Club",
+    "apelido": "Tricolor Carioca",
+    "country_id": 55,
+    "state_id": 21,
+    "anoFundacao": 1902,
+    "prestigio": 75,
+    "financas": 1200,
+    "tecnico": {
+      "coach_id": 301,
+      "nome": "John Dutton",
+      "estiloTatico": "ofensivo"
+    },
+    "stadium": {
+      "stadium_id": 501,
+      "nome": "Campo das Laranjeiras",
+      "capacidade": 8000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": { "locais": 3000, "nacionais": 100, "mundiais": 0 }
+  },
+  {
+    "club_id": 102,
+    "nome": "Club de Regatas do Flamengo",
+    "apelido": "Rubro-Negro",
+    "country_id": 55,
+    "state_id": 21,
+    "anoFundacao": 1911,
+    "prestigio": 62,
+    "financas": 900,
+    "tecnico": {
+      "coach_id": 302,
+      "nome": "Manoel Oliveira",
+      "estiloTatico": "equilibrado"
+    },
+    "stadium": {
+      "stadium_id": 502,
+      "nome": "Campo da Gávea",
+      "capacidade": 5000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 2000, "nacionais": 50, "mundiais": 0 }
+  },
+  {
+    "club_id": 103,
+    "nome": "Club de Regatas Vasco da Gama",
+    "apelido": "Vasco",
+    "country_id": 55,
+    "state_id": 21,
+    "anoFundacao": 1898,
+    "prestigio": 58,
+    "financas": 800,
+    "tecnico": {
+      "coach_id": 303,
+      "nome": "Raimundo Pinheiro",
+      "estiloTatico": "equilibrado"
+    },
+    "stadium": {
+      "stadium_id": 503,
+      "nome": "Campo de General Severiano",
+      "capacidade": 4000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 2500, "nacionais": 80, "mundiais": 0 }
+  },
+  {
+    "club_id": 104,
+    "nome": "América Football Club",
+    "apelido": "América",
+    "country_id": 55,
+    "state_id": 21,
+    "anoFundacao": 1904,
+    "prestigio": 60,
+    "financas": 700,
+    "tecnico": {
+      "coach_id": 304,
+      "nome": "Augusto Leite",
+      "estiloTatico": "defensivo"
+    },
+    "stadium": {
+      "stadium_id": 504,
+      "nome": "Campo da Rua Campos Sales",
+      "capacidade": 3500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 1800, "nacionais": 30, "mundiais": 0 }
+  },
+  {
+    "club_id": 105,
+    "nome": "Bangu Athletic Club",
+    "apelido": "Bangu",
+    "country_id": 55,
+    "state_id": 21,
+    "anoFundacao": 1904,
+    "prestigio": 42,
+    "financas": 350,
+    "tecnico": {
+      "coach_id": 305,
+      "nome": "William Probert",
+      "estiloTatico": "equilibrado"
+    },
+    "stadium": {
+      "stadium_id": 505,
+      "nome": "Campo do Moça Bonita",
+      "capacidade": 2000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 800, "nacionais": 10, "mundiais": 0 }
+  },
+  {
+    "club_id": 106,
+    "nome": "Botafogo de Futebol e Regatas",
+    "apelido": "Estrela Solitária",
+    "country_id": 55,
+    "state_id": 21,
+    "anoFundacao": 1904,
+    "prestigio": 65,
+    "financas": 850,
+    "tecnico": {
+      "coach_id": 306,
+      "nome": "Álvaro Chaves",
+      "estiloTatico": "ofensivo"
+    },
+    "stadium": {
+      "stadium_id": 506,
+      "nome": "Campo General Bartolomeu",
+      "capacidade": 4500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 1800, "nacionais": 40, "mundiais": 0 }
+  },
+  {
+    "club_id": 107,
+    "nome": "São Cristóvão de Futebol e Regatas",
+    "apelido": "Galinho de Quintino",
+    "country_id": 55,
+    "state_id": 21,
+    "anoFundacao": 1898,
+    "prestigio": 40,
+    "financas": 300,
+    "tecnico": {
+      "coach_id": 307,
+      "nome": "Custódio Araújo",
+      "estiloTatico": "defensivo"
+    },
+    "stadium": {
+      "stadium_id": 507,
+      "nome": "Campo de São Cristóvão",
+      "capacidade": 2500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 700, "nacionais": 5, "mundiais": 0 }
+  },
+  {
+    "club_id": 201,
+    "nome": "Club Athletico Paulistano",
+    "apelido": "Paulistano",
+    "country_id": 55,
+    "state_id": 25,
+    "anoFundacao": 1900,
+    "prestigio": 82,
+    "financas": 1500,
+    "tecnico": {
+      "coach_id": 401,
+      "nome": "Jack Greenfield",
+      "estiloTatico": "ofensivo"
+    },
+    "stadium": {
+      "stadium_id": 601,
+      "nome": "Velódromo Paulista",
+      "capacidade": 6000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": { "locais": 4000, "nacionais": 200, "mundiais": 0 }
+  },
+  {
+    "club_id": 202,
+    "nome": "Palestra Italia",
+    "apelido": "Palestra",
+    "country_id": 55,
+    "state_id": 25,
+    "anoFundacao": 1914,
+    "prestigio": 58,
+    "financas": 650,
+    "tecnico": {
+      "coach_id": 402,
+      "nome": "Giovanni Fabbri",
+      "estiloTatico": "ofensivo"
+    },
+    "stadium": {
+      "stadium_id": 602,
+      "nome": "Parque Antarctica",
+      "capacidade": 5000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 2200, "nacionais": 60, "mundiais": 0 }
+  },
+  {
+    "club_id": 203,
+    "nome": "Sport Club Corinthians Paulista",
+    "apelido": "Corinthians",
+    "country_id": 55,
+    "state_id": 25,
+    "anoFundacao": 1910,
+    "prestigio": 55,
+    "financas": 550,
+    "tecnico": {
+      "coach_id": 403,
+      "nome": "Carlos Rocha",
+      "estiloTatico": "equilibrado"
+    },
+    "stadium": {
+      "stadium_id": 603,
+      "nome": "Campo do Bom Retiro",
+      "capacidade": 4000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 2800, "nacionais": 70, "mundiais": 0 }
+  },
+  {
+    "club_id": 204,
+    "nome": "SC Americano de São Paulo",
+    "apelido": "Americano",
+    "country_id": 55,
+    "state_id": 25,
+    "anoFundacao": 1904,
+    "prestigio": 48,
+    "financas": 480,
+    "tecnico": {
+      "coach_id": 404,
+      "nome": "Horácio Campos",
+      "estiloTatico": "defensivo"
+    },
+    "stadium": {
+      "stadium_id": 604,
+      "nome": "Campo do Americano",
+      "capacidade": 3000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 1000, "nacionais": 15, "mundiais": 0 }
+  },
+  {
+    "club_id": 205,
+    "nome": "Associação Atlética das Palmeiras",
+    "apelido": "AA Palmeiras",
+    "country_id": 55,
+    "state_id": 25,
+    "anoFundacao": 1902,
+    "prestigio": 42,
+    "financas": 400,
+    "tecnico": {
+      "coach_id": 405,
+      "nome": "Joaquim Braga",
+      "estiloTatico": "equilibrado"
+    },
+    "stadium": {
+      "stadium_id": 605,
+      "nome": "Campo das Palmeiras",
+      "capacidade": 2500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 900, "nacionais": 10, "mundiais": 0 }
+  },
+  {
+    "club_id": 206,
+    "nome": "Ypiranga Futebol Clube",
+    "apelido": "Canarinho",
+    "country_id": 55,
+    "state_id": 25,
+    "anoFundacao": 1906,
+    "prestigio": 38,
+    "financas": 320,
+    "tecnico": {
+      "coach_id": 406,
+      "nome": "Benedito Nunes",
+      "estiloTatico": "defensivo"
+    },
+    "stadium": {
+      "stadium_id": 606,
+      "nome": "Campo do Ypiranga",
+      "capacidade": 2000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 600, "nacionais": 5, "mundiais": 0 }
+  },
+  {
+    "club_id": 207,
+    "nome": "Santos Futebol Clube",
+    "apelido": "Peixe",
+    "country_id": 55,
+    "state_id": 25,
+    "anoFundacao": 1912,
+    "prestigio": 35,
+    "financas": 300,
+    "tecnico": {
+      "coach_id": 407,
+      "nome": "Alfredo Mello",
+      "estiloTatico": "equilibrado"
+    },
+    "stadium": {
+      "stadium_id": 607,
+      "nome": "Campo do Vila Belmiro",
+      "capacidade": 2000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 500, "nacionais": 5, "mundiais": 0 }
+  }
+]

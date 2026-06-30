@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universo Alternativo do Futebol</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ─── HEADER ─────────────────────────────────────────────────────────────── -->
+<header id="header">
+  <h1>⚽ Universo Alternativo do Futebol</h1>
+  <div id="cronologia">
+    <span class="crono-badge" id="hdr-ano">1920</span>
+    <span class="crono-badge" id="hdr-mes">Jan</span>
+    <span class="crono-badge" id="hdr-semana">Sem. 1</span>
+    <span class="crono-badge era" id="hdr-era">Era Amadora</span>
+    <span id="status-tempo"></span>
+  </div>
+  <div id="header-actions">
+    <button class="btn-ghost" id="btn-reset">↺ Resetar</button>
+  </div>
+</header>
+
+<!-- ─── LAYOUT PRINCIPAL ────────────────────────────────────────────────────── -->
+<main id="layout">
+
+  <!-- Coluna Esquerda: Controles de Tempo -->
+  <aside>
+    <div class="card" id="painel-tempo">
+      <div class="card-header">⏱ Controles de Tempo</div>
+      <div class="card-body">
+        <div class="btns-tempo">
+          <button class="btn-tempo" id="btn-rodada">
+            <span class="ico">⚽</span>
+            <span class="desc"><span>Simular Rodada</span><small>Jogos desta semana</small></span>
+          </button>
+          <button class="btn-tempo" id="btn-semana">
+            <span class="ico">📅</span>
+            <span class="desc"><span>Simular Semana</span><small>Avança 1 semana</small></span>
+          </button>
+          <button class="btn-tempo" id="btn-mes">
+            <span class="ico">🗓</span>
+            <span class="desc"><span>Simular Mês</span><small>Avança 4 semanas</small></span>
+          </button>
+          <button class="btn-tempo" id="btn-semestre">
+            <span class="ico">📊</span>
+            <span class="desc"><span>Simular Semestre</span><small>Avança 24 semanas</small></span>
+          </button>
+          <button class="btn-tempo" id="btn-ano">
+            <span class="ico">🏆</span>
+            <span class="desc"><span>Simular Ano</span><small>Temporada completa</small></span>
+          </button>
+        </div>
+        <button class="btn-reset" id="btn-nova-simulacao" style="margin-top:16px">↺ Nova Simulação</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Coluna Direita: Conteúdo principal -->
+  <div id="conteudo-principal">
+
+    <!-- Tabelas de classificação -->
+    <div class="card" id="painel-tabelas">
+      <div class="card-header">🏅 Classificações</div>
+      <div id="tabelas-wrap">
+        <div id="tabela-container" style="padding:12px;color:#8b949e;font-size:13px">Carregando…</div>
+      </div>
+    </div>
+
+    <!-- Feed de Notícias e Mercado (lado a lado) -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:12px">
+
+      <div class="card" id="painel-noticias">
+        <div class="card-header">📰 Notícias</div>
+        <div class="card-body">
+          <ul id="log-noticias">
+            <li class="sem-dados">Aguardando início da simulação…</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" id="painel-mercado">
+        <div class="card-header">🔄 Mercado de Transferências</div>
+        <div class="card-body">
+          <ul id="log-mercado">
+            <li class="sem-dados">Nenhuma transferência ainda.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modo Deus -->
+    <div class="card" style="margin-top:12px">
+      <details class="deus-panel">
+        <summary>⚡ Modo Deus — Intervenção Divina</summary>
+        <div class="deus-grid">
+          <button class="btn-deus" id="btn-forcar-transferencia">Forçar Transferência</button>
+          <button class="btn-deus" id="btn-deduzir-pontos">Deduzir Pontos</button>
+          <button class="btn-deus" id="btn-fundar-clube">Fundar Clube</button>
+          <button class="btn-deus" id="btn-boost-jogador">Boost de Atributos</button>
+        </div>
+        <div class="deus-veto">
+          <label for="sel-veto">Política de Veto:</label>
+          <select id="sel-veto">
+            <option value="nenhum">Nenhum (Automático)</option>
+            <option value="apenas_tags">Apenas Lendas/Craques</option>
+            <option value="todos">Todas as transferências</option>
+          </select>
+        </div>
+      </details>
+    </div>
+
+    <!-- Crônica e Prompt de IA -->
+    <div class="card" style="margin-top:12px">
+      <details class="cronica-panel">
+        <summary>📋 Crônica Anual — Prompt para IA</summary>
+        <div class="cronica-controles">
+          <select id="sel_ano_cronica"><option value="">—</option></select>
+          <button class="btn-cronica" id="btn-gerar-prompt">Gerar Prompt</button>
+          <button class="btn-copiar" id="btn-copiar-prompt">⚡ Copiar</button>
+        </div>
+        <div id="container-prompt-ia">
+          <p style="font-size:12px;color:#8b949e;margin-bottom:8px">Copie o prompt abaixo e cole em um modelo de IA generativa (ex: Gemini) para gerar a crônica da temporada.</p>
+          <textarea id="txt_prompt_ia" readonly placeholder="Gere o prompt acima…"></textarea>
+        </div>
+      </details>
+    </div>
+
+  </div><!-- /conteudo-principal -->
+</main>
+
+<!-- ─── MODAL GENÉRICO ────────────────────────────────────────────────────── -->
+<div id="modal-overlay">
+  <div id="modal-box">
+    <h2 id="modal-titulo"></h2>
+    <div id="modal-corpo"></div>
+    <div class="modal-footer">
+      <button class="btn-cancelar" id="btn-modal-cancelar">Cancelar</button>
+      <button class="btn-confirmar" id="btn-modal-confirmar">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── POP-UP HISTÓRICO ──────────────────────────────────────────────────── -->
+<div id="popup-historico">
+  <p id="popup-titulo"></p>
+  <p id="popup-descricao"></p>
+  <div class="popup-btns">
+    <button class="btn-popup-sim" id="btn-popup-sim">✓ Confirmar Evento</button>
+    <button class="btn-popup-nao" id="btn-popup-nao">✗ Ignorar (Linha Alt.)</button>
+  </div>
+</div>
+
+<!-- ─── CARD DE VETO ──────────────────────────────────────────────────────── -->
+<div id="card-veto">
+  <h4>⚡ Veto de Transferência</h4>
+  <p><strong id="veto-jogador"></strong></p>
+  <p>De: <span id="veto-origem"></span> → Para: <span id="veto-destino"></span></p>
+  <div class="veto-btns">
+    <button class="btn-veto-sim" id="btn-veto-aprovar">Aprovar</button>
+    <button class="btn-veto-nao" id="btn-veto-rejeitar">Bloquear</button>
+  </div>
+</div>
+
+<!-- ─── TOAST ─────────────────────────────────────────────────────────────── -->
+<div id="toast"></div>
+
+<!-- ─── SCRIPTS (ordem de dependência) ───────────────────────────────────── -->
+<script src="js/db.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/simulador.js"></script>
+<script src="js/mercado.js"></script>
+<script src="js/tabela.js"></script>
+<script src="js/cronica.js"></script>
+<script src="js/deus.js"></script>
+<script src="js/ui.js"></script>
+
+</body>
+</html>
