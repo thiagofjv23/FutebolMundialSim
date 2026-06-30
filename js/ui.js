@@ -443,7 +443,8 @@ const UI = (() => {
 
   function _renderHistoricoTorneiosClube(clubeId, filtro) {
     const todos = [...Mundo.torneios.values()]
-      .filter(t => t.participantes.includes(clubeId) && t.classificacao.length)
+      .filter(t => Array.isArray(t.participantes) && t.participantes.includes(clubeId)
+              && Array.isArray(t.classificacao) && t.classificacao.length)
       .sort((a, b) => (b.ano - a.ano) || a.nome.localeCompare(b.nome));
 
     const baseNames = [...new Set(todos.map(t => t.nome.replace(/ \d+$/, '')))];
@@ -598,10 +599,14 @@ const UI = (() => {
             <div class="card-body">${disputados.length ? [...disputados].reverse().map(linhaJogo).join('') : '<p class="sem-dados">Nenhum jogo disputado ainda.</p>'}</div>
           </div>
         </div>
-      </div>
-      ${_renderPalmaresClube(clubeId)}
-      ${_renderHistoricoTorneiosClube(clubeId, '')}`;
-    _bindFiltroClubeHistorico(el, clubeId);
+      </div>`;
+    try {
+      el.insertAdjacentHTML('beforeend', _renderPalmaresClube(clubeId));
+      el.insertAdjacentHTML('beforeend', _renderHistoricoTorneiosClube(clubeId, ''));
+      _bindFiltroClubeHistorico(el, clubeId);
+    } catch (err) {
+      console.error('[Clube] Erro nas seções históricas:', err);
+    }
   }
 
   // Mantido por compatibilidade: agora navega para a tela de time.
