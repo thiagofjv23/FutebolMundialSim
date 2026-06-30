@@ -128,6 +128,19 @@ const UI = (() => {
     document.getElementById('btn-semestre')?.addEventListener('click', () => comandarPassagemDeTempo('semestre'));
     document.getElementById('btn-ano')?.addEventListener('click',      () => comandarPassagemDeTempo('ano'));
 
+    // Controle de tempo persistente no cabeçalho
+    document.getElementById('btn-avancar-tempo')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      _alternarMenuTempo();
+    });
+    document.querySelectorAll('.menu-tempo-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (Mundo.filaDeExecucao.passosRestantes > 0) return;
+        _fecharMenuTempo();
+        comandarPassagemDeTempo(btn.dataset.escala);
+      });
+    });
+
     // Navegação
     document.getElementById('nav-inicio')?.addEventListener('click', irParaInicio);
     document.getElementById('nav-voltar')?.addEventListener('click', voltar);
@@ -142,8 +155,11 @@ const UI = (() => {
       e.target.value = '';
     });
 
-    // Delegação global de links de navegação (clube / torneio)
+    // Delegação global de links de navegação (clube / torneio) + fechar menu de tempo
     document.addEventListener('click', (e) => {
+      // Fecha o menu de avanço de tempo ao clicar fora dele
+      if (!e.target.closest('#tempo-wrap')) _fecharMenuTempo();
+
       const a = e.target.closest('[data-club-id], [data-torneio-id]');
       if (!a) return;
       if (a.dataset.clubId)        { e.preventDefault(); navegarPara('time', { clubeId: +a.dataset.clubId }); }
@@ -259,12 +275,26 @@ const UI = (() => {
   // ─── CONTROLE DE BOTÕES ─────────────────────────────────────────────────────
 
   function setBotoesTempoAtivos(ativo) {
-    ['btn-rodada','btn-semana','btn-mes','btn-semestre','btn-ano'].forEach(id => {
+    ['btn-rodada','btn-semana','btn-mes','btn-semestre','btn-ano','btn-avancar-tempo'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.disabled = !ativo;
     });
+    document.querySelectorAll('.menu-tempo-item').forEach(el => { el.disabled = !ativo; });
+    if (!ativo) _fecharMenuTempo();
     const status = document.getElementById('status-tempo');
     if (status) status.textContent = ativo ? '' : 'Simulando…';
+  }
+
+  // ─── MENU DE AVANÇO DE TEMPO (cabeçalho) ─────────────────────────────────────
+
+  function _alternarMenuTempo() {
+    const menu = document.getElementById('menu-tempo');
+    if (!menu) return;
+    menu.hidden = !menu.hidden;
+  }
+  function _fecharMenuTempo() {
+    const menu = document.getElementById('menu-tempo');
+    if (menu && !menu.hidden) menu.hidden = true;
   }
 
   // ─── MODAL MODO DEUS ────────────────────────────────────────────────────────

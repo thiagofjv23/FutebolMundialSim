@@ -140,6 +140,39 @@ input, select { font-family: inherit; font-size: 13px; }
 }
 .nav-select select:hover { border-color: var(--blue); }
 
+/* ─── MENU DE AVANÇO DE TEMPO (cabeçalho) ──────────────────────────────────── */
+#tempo-wrap { position: relative; display: inline-flex; }
+
+#menu-tempo {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 200px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 200;
+  box-shadow: 0 8px 24px rgba(0,0,0,.5);
+}
+#menu-tempo[hidden] { display: none; }
+
+.menu-tempo-item {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+  transition: background .15s, border-color .15s;
+}
+.menu-tempo-item:hover:not(:disabled) { background: #2d333b; border-color: var(--blue); }
+.menu-tempo-item:disabled { opacity: .4; cursor: not-allowed; }
+
 /* ─── TELAS / ROTEADOR ─────────────────────────────────────────────────────── */
 .tela { display: none; }
 .tela.ativa { display: block; }
@@ -566,4 +599,5 @@ details.cronica-panel[open] > summary::before { transform: rotate(90deg); }
   .nav-select select { max-width: 100%; width: 100%; }
   .nav-voltar { margin-left: 0; }
   .tela-conteudo { padding: 8px; }
+  #menu-tempo { left: auto; right: 0; min-width: 180px; max-width: calc(100vw - 24px); }
 }
