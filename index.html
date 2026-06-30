@@ -23,6 +23,22 @@
   </div>
 </header>
 
+<!-- ─── BARRA DE NAVEGAÇÃO ──────────────────────────────────────────────────── -->
+<nav id="nav-principal">
+  <button class="nav-btn" id="nav-inicio">🏠 Início</button>
+  <label class="nav-select">
+    <span>🏆 Campeonato</span>
+    <select id="nav-sel-campeonato"><option value="">—</option></select>
+  </label>
+  <label class="nav-select">
+    <span>👥 Time</span>
+    <select id="nav-sel-time"><option value="">—</option></select>
+  </label>
+  <button class="nav-btn nav-voltar" id="nav-voltar" hidden>← Voltar</button>
+</nav>
+
+<!-- ═══ TELA INÍCIO ══════════════════════════════════════════════════════════ -->
+<section class="tela ativa" id="tela-inicio">
 <!-- ─── LAYOUT PRINCIPAL ────────────────────────────────────────────────────── -->
 <main id="layout">
 
@@ -131,6 +147,17 @@
 
   </div><!-- /conteudo-principal -->
 </main>
+</section><!-- /tela-inicio -->
+
+<!-- ═══ TELA CAMPEONATO ══════════════════════════════════════════════════════ -->
+<section class="tela" id="tela-campeonato">
+  <div id="campeonato-conteudo" class="tela-conteudo"></div>
+</section>
+
+<!-- ═══ TELA TIME ════════════════════════════════════════════════════════════ -->
+<section class="tela" id="tela-time">
+  <div id="time-conteudo" class="tela-conteudo"></div>
+</section>
 
 <!-- ─── MODAL GENÉRICO ────────────────────────────────────────────────────── -->
 <div id="modal-overlay">
