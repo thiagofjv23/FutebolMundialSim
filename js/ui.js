@@ -8,7 +8,7 @@ const UI = (() => {
   let _telaAtual = { view: 'inicio', params: {} };
   let _historico = [];
 
-  const _TELAS = { inicio: 'tela-inicio', campeonato: 'tela-campeonato', time: 'tela-time' };
+  const _TELAS = { inicio: 'tela-inicio', campeonato: 'tela-campeonato', time: 'tela-time', historia: 'tela-historia' };
 
   function _mostrarTela(view) {
     document.querySelectorAll('.tela').forEach(s => s.classList.remove('ativa'));
@@ -16,9 +16,10 @@ const UI = (() => {
   }
 
   function _renderizarTela(view, params) {
-    if (view === 'campeonato')   Tabela.renderizarTelaCampeonato(params.torneioId);
-    else if (view === 'time')    renderizarTelaTime(params.clubeId);
-    else                         atualizarTodosOsPaineis();
+    if (view === 'campeonato')      Tabela.renderizarTelaCampeonato(params.torneioId);
+    else if (view === 'time')       renderizarTelaTime(params.clubeId);
+    else if (view === 'historia')   Historia.renderizarTelaHistoria();
+    else                            atualizarTodosOsPaineis();
   }
 
   function navegarPara(view, params = {}) {
@@ -143,6 +144,7 @@ const UI = (() => {
 
     // Navegação
     document.getElementById('nav-inicio')?.addEventListener('click', irParaInicio);
+    document.getElementById('nav-historia')?.addEventListener('click', () => navegarPara('historia'));
     document.getElementById('nav-voltar')?.addEventListener('click', voltar);
     document.getElementById('nav-sel-campeonato')?.addEventListener('change', (e) => {
       const id = +e.target.value;
@@ -225,8 +227,9 @@ const UI = (() => {
     atualizarLogMercado();
     Cronica.popularSeletorAnos();
     // Re-renderiza a tela ativa se não for a inicial (dados podem ter mudado)
-    if (_telaAtual.view === 'campeonato') Tabela.renderizarTelaCampeonato(_telaAtual.params.torneioId);
-    else if (_telaAtual.view === 'time')  renderizarTelaTime(_telaAtual.params.clubeId);
+    if (_telaAtual.view === 'campeonato')    Tabela.renderizarTelaCampeonato(_telaAtual.params.torneioId);
+    else if (_telaAtual.view === 'time')     renderizarTelaTime(_telaAtual.params.clubeId);
+    else if (_telaAtual.view === 'historia') Historia.renderizarTelaHistoria();
   }
 
   function atualizarNavSelects() {

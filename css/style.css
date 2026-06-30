@@ -582,6 +582,78 @@ details.cronica-panel[open] > summary::before { transform: rotate(90deg); }
 #toast.visivel { display: block; animation: fadeUp .3s ease; }
 @keyframes fadeUp { from { opacity:0; transform: translateX(-50%) translateY(10px); } to { opacity:1; transform: translateX(-50%); } }
 
+/* ─── TELA HISTÓRIA ─────────────────────────────────────────────────────────── */
+.hist-filtro-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.hist-filtro-bar select {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 5px 8px;
+}
+.hist-filtro-bar select:hover { border-color: var(--blue); }
+
+.hist-duas-colunas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.hist-duas-colunas > * + * { border-left: 1px solid var(--border); }
+
+.recordes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+  padding: 12px;
+}
+
+.recorde-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  transition: border-color .15s;
+}
+.recorde-card:hover { border-color: var(--blue); }
+
+.recorde-icone { font-size: 22px; flex-shrink: 0; line-height: 1; }
+.recorde-info { min-width: 0; }
+.recorde-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+}
+.recorde-valor {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.recorde-valor.recorde-destaque { color: var(--gold); }
+.recorde-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
 /* ─── SCROLLBARS ────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: var(--bg2); }
@@ -600,4 +672,7 @@ details.cronica-panel[open] > summary::before { transform: rotate(90deg); }
   .nav-voltar { margin-left: 0; }
   .tela-conteudo { padding: 8px; }
   #menu-tempo { left: auto; right: 0; min-width: 180px; max-width: calc(100vw - 24px); }
+  .recordes-grid { grid-template-columns: 1fr; }
+  .hist-duas-colunas { grid-template-columns: 1fr; }
+  .hist-duas-colunas > * + * { border-left: none; border-top: 1px solid var(--border); }
 }
