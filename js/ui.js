@@ -411,6 +411,96 @@ const UI = (() => {
     });
   });
 
+  // ─── TELA DE TIME — PALMARÈS E HISTÓRICO ─────────────────────────────────────
+
+  function _renderPalmaresClube(clubeId) {
+    const titulos = [...Mundo.torneios.values()]
+      .filter(t => t.campeao === clubeId)
+      .sort((a, b) => b.ano - a.ano);
+
+    if (!titulos.length) return `
+      <div class="card" style="margin-top:12px">
+        <div class="card-header">🏆 Palmarès</div>
+        <div class="card-body"><p class="sem-dados">Nenhum título conquistado ainda.</p></div>
+      </div>`;
+
+    const linhas = titulos.map(t => `<tr>
+      <td>${t.ano}</td>
+      <td class="col-nome" style="text-align:left">${_escapeHtml(t.nome.replace(/ \d+$/, ''))}</td>
+    </tr>`).join('');
+
+    return `
+      <div class="card" style="margin-top:12px">
+        <div class="card-header">🏆 Palmarès — ${titulos.length} título(s)</div>
+        <div style="overflow-x:auto">
+          <table class="tabela-classificacao">
+            <thead><tr><th>Ano</th><th class="col-nome">Competição</th></tr></thead>
+            <tbody>${linhas}</tbody>
+          </table>
+        </div>
+      </div>`;
+  }
+
+  function _renderHistoricoTorneiosClube(clubeId, filtro) {
+    const todos = [...Mundo.torneios.values()]
+      .filter(t => t.participantes.includes(clubeId) && t.classificacao.length)
+      .sort((a, b) => (b.ano - a.ano) || a.nome.localeCompare(b.nome));
+
+    const baseNames = [...new Set(todos.map(t => t.nome.replace(/ \d+$/, '')))];
+    const lista = filtro ? todos.filter(t => t.nome.replace(/ \d+$/, '') === filtro) : todos;
+    const opcoes = baseNames.map(n =>
+      `<option value="${n}"${filtro === n ? ' selected' : ''}>${n}</option>`
+    ).join('');
+
+    const semDados = '<tr><td colspan="9" class="sem-dados" style="padding:14px;text-align:center">Sem participações registradas.</td></tr>';
+
+    const linhas = lista.map(t => {
+      const idx = t.classificacao.findIndex(l => l.club_id === clubeId);
+      if (idx === -1) return '';
+      const l = t.classificacao[idx];
+      const pos = idx + 1;
+      const icone = pos === 1 ? '🥇' : pos === 2 ? '🥈' : pos === 3 ? '🥉' : '';
+      const isCampeao = t.campeao === clubeId;
+      const sg = l.gp > l.gc
+        ? `<span class="pos">+${l.gp - l.gc}</span>`
+        : l.sg < 0 ? `<span class="neg">${l.sg}</span>` : String(l.sg);
+      return `<tr${isCampeao ? ' class="zona-titulo"' : ''}>
+        <td>${t.ano}</td>
+        <td class="col-nome" style="text-align:left;font-size:12px">${_escapeHtml(t.nome.replace(/ \d+$/, ''))}</td>
+        <td>${icone}${pos}º</td>
+        <td>${l.pts}</td><td>${l.j}</td><td>${l.v}</td><td>${l.e}</td><td>${l.d}</td><td>${sg}</td>
+      </tr>`;
+    }).filter(Boolean).join('');
+
+    return `
+      <div id="hist-clube-historico-card" class="card" style="margin-top:12px">
+        <div class="card-header">📊 Histórico em Campeonatos</div>
+        <div class="hist-filtro-bar">
+          <label>Filtrar competição:</label>
+          <select id="hist-clube-filtro-torneio">
+            <option value="">Todas</option>${opcoes}
+          </select>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="tabela-classificacao">
+            <thead><tr><th>Ano</th><th class="col-nome">Torneio</th><th>Pos</th><th>Pts</th><th>J</th><th>V</th><th>E</th><th>D</th><th>SG</th></tr></thead>
+            <tbody>${linhas || semDados}</tbody>
+          </table>
+        </div>
+      </div>`;
+  }
+
+  function _bindFiltroClubeHistorico(el, clubeId) {
+    el.querySelector('#hist-clube-filtro-torneio')?.addEventListener('change', (e) => {
+      const card = el.querySelector('#hist-clube-historico-card');
+      if (!card) return;
+      const temp = document.createElement('div');
+      temp.innerHTML = _renderHistoricoTorneiosClube(clubeId, e.target.value);
+      card.replaceWith(temp.firstElementChild);
+      _bindFiltroClubeHistorico(el, clubeId);
+    });
+  }
+
   // ─── TELA DE TIME ────────────────────────────────────────────────────────────
 
   function renderizarTelaTime(clubeId) {
@@ -508,7 +598,10 @@ const UI = (() => {
             <div class="card-body">${disputados.length ? [...disputados].reverse().map(linhaJogo).join('') : '<p class="sem-dados">Nenhum jogo disputado ainda.</p>'}</div>
           </div>
         </div>
-      </div>`;
+      </div>
+      ${_renderPalmaresClube(clubeId)}
+      ${_renderHistoricoTorneiosClube(clubeId, '')}`;
+    _bindFiltroClubeHistorico(el, clubeId);
   }
 
   // Mantido por compatibilidade: agora navega para a tela de time.
