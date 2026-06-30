@@ -59,6 +59,8 @@ const Mercado = (() => {
     if (!jogador || !destino) return false;
 
     jogador.club_id = destinoId;
+    indiceRemoverJogador(origemId, jogadorId);
+    indiceAdicionarJogador(destinoId, jogadorId);
     if (valor > 0) {
       if (origem)  origem.financas  -= valor;
       destino.financas += valor;
@@ -96,18 +98,23 @@ const Mercado = (() => {
       if (!clube.ativo) return;
 
       // Verificar se o clube precisa de reforços (menos de 16 jogadores ativos)
-      const squad = [...Mundo.jogadores.values()].filter(j => j.club_id === clube.club_id && j.ativo);
-      if (squad.length >= 16) return;
+      const squadSize = Mundo.indiceElencos.get(clube.club_id)?.size || 0;
+      if (squadSize >= 16) return;
 
-      // Buscar jogadores disponíveis para transferência
-      const candidatos = [...Mundo.jogadores.values()].filter(j => {
-        if (!j.ativo || j.club_id === clube.club_id) return false;
-        if (!verificarRestricaoEra(j.club_id, clube.club_id)) return false;
-        if (j.tag_legado && Mundo.politicaVeto === 'apenas_tags') {
-          UI.mostrarCardVeto(j, clube);
-          return false;
-        }
-        return avaliarInteresse(j, clube.club_id);
+      // Buscar jogadores disponíveis para transferência (apenas elencos ativos, via índice)
+      const candidatos = [];
+      Mundo.indiceElencos.forEach((ids, origemClubeId) => {
+        if (origemClubeId === clube.club_id) return;
+        if (!verificarRestricaoEra(origemClubeId, clube.club_id)) return;
+        ids.forEach(jogadorId => {
+          const j = Mundo.jogadores.get(jogadorId);
+          if (!j) return;
+          if (j.tag_legado && Mundo.politicaVeto === 'apenas_tags') {
+            UI.mostrarCardVeto(j, clube);
+            return;
+          }
+          if (avaliarInteresse(j, clube.club_id)) candidatos.push(j);
+        });
       });
 
       if (!candidatos.length) return;

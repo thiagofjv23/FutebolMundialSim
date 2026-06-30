@@ -64,6 +64,10 @@
     "21": { "nome": "Rio de Janeiro", "lat": -22.9, "lon": -43.1 },
     "25": { "nome": "São Paulo", "lat": -23.5, "lon": -46.6 }
   },
+  "torneiosIniciais": [
+    { "nome": "Campeonato Paulista", "state_id": 25, "formato": "LIGA", "tier": "ESTADUAL", "tipoParticipante": "CLUBE", "minParticipantes": 2 },
+    { "nome": "Campeonato Carioca", "state_id": 21, "formato": "LIGA", "tier": "ESTADUAL", "tipoParticipante": "CLUBE", "minParticipantes": 2 }
+  ],
   "nomesRegens": {
     "masculinos": [
       "José", "João", "Antônio", "Francisco", "Pedro", "Manuel", "Luís", "Carlos",

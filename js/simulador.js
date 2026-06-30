@@ -5,7 +5,8 @@ const Simulador = (() => {
   // ─── FORÇA DO TIME ──────────────────────────────────────────────────────────
 
   function calcularForcaTime(clubeId) {
-    const squad = [...Mundo.jogadores.values()].filter(j => j.club_id === clubeId && j.ativo);
+    const ids = Mundo.indiceElencos.get(clubeId);
+    const squad = ids ? [...ids].map(id => Mundo.jogadores.get(id)).filter(Boolean) : [];
     const por = { Goleiro: [], Zagueiro: [], Meia: [], Atacante: [] };
     squad.forEach(j => { if (por[j.posicao]) por[j.posicao].push(j); });
 
@@ -45,9 +46,10 @@ const Simulador = (() => {
 
   function determinarArtilheiros(clubeId, numGols) {
     if (numGols === 0) return [];
-    const atacantes = [...Mundo.jogadores.values()].filter(
-      j => j.club_id === clubeId && j.ativo && (j.posicao === 'Atacante' || j.posicao === 'Meia')
-    );
+    const ids = Mundo.indiceElencos.get(clubeId);
+    const atacantes = ids
+      ? [...ids].map(id => Mundo.jogadores.get(id)).filter(j => j && (j.posicao === 'Atacante' || j.posicao === 'Meia'))
+      : [];
     if (!atacantes.length) return [];
 
     const totalAtk = atacantes.reduce((s, j) => s + j.atributos.ataque, 0);
@@ -243,15 +245,23 @@ const Simulador = (() => {
   }
 
   function criarTorneiosIniciais() {
-    const clubesSP = [...Mundo.clubes.values()].filter(c => c.ativo && c.state_id === 25).map(c => c.club_id);
-    const clubesRJ = [...Mundo.clubes.values()].filter(c => c.ativo && c.state_id === 21).map(c => c.club_id);
+    const configs = Mundo.regrasGlobais?.torneiosIniciais || [];
+    configs.forEach(cfg => {
+      const participantes = [...Mundo.clubes.values()]
+        .filter(c => c.ativo && c.state_id === cfg.state_id)
+        .map(c => c.club_id);
 
-    if (clubesSP.length >= 2) {
-      criarTorneio({ nome: `Campeonato Paulista ${Mundo.cronologia.anoAtual}`, formato: 'LIGA', tier: 'ESTADUAL', tipoParticipante: 'CLUBE', state_id: 25, participantes: clubesSP });
-    }
-    if (clubesRJ.length >= 2) {
-      criarTorneio({ nome: `Campeonato Carioca ${Mundo.cronologia.anoAtual}`, formato: 'LIGA', tier: 'ESTADUAL', tipoParticipante: 'CLUBE', state_id: 21, participantes: clubesRJ });
-    }
+      if (participantes.length < (cfg.minParticipantes || 2)) return;
+
+      criarTorneio({
+        nome: `${cfg.nome} ${Mundo.cronologia.anoAtual}`,
+        formato: cfg.formato,
+        tier: cfg.tier,
+        tipoParticipante: cfg.tipoParticipante,
+        state_id: cfg.state_id,
+        participantes,
+      });
+    });
   }
 
   function renovarTorneiosAnuais() {
@@ -272,7 +282,10 @@ const Simulador = (() => {
 
   function montarSelecaoEstadual(stateId) {
     const clubesDoEstado = [...Mundo.clubes.values()].filter(c => c.ativo && c.state_id === stateId).map(c => c.club_id);
-    const jogadores = [...Mundo.jogadores.values()].filter(j => j.ativo && clubesDoEstado.includes(j.club_id));
+    const jogadores = clubesDoEstado.flatMap(clubeId => {
+      const ids = Mundo.indiceElencos.get(clubeId);
+      return ids ? [...ids].map(id => Mundo.jogadores.get(id)).filter(Boolean) : [];
+    });
 
     const por = { Goleiro: [], Zagueiro: [], Meia: [], Atacante: [] };
     jogadores.forEach(j => { if (por[j.posicao]) por[j.posicao].push(j); });

@@ -7,6 +7,7 @@ const Mundo = {
   jogadores: new Map(),
   torneios: new Map(),
   tabelaH2H: new Map(),
+  indiceElencos: new Map(), // club_id -> Set<player_id> (apenas jogadores ativos)
   logNoticias: [],
   logTransferencias: [],
   politicaVeto: 'nenhum',
@@ -29,6 +30,29 @@ function rngNormal(mean, sd) {
   return Math.round(Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v) * sd + mean);
 }
 
+// ─── ÍNDICE DE ELENCOS ────────────────────────────────────────────────────────
+// Mantém Mundo.indiceElencos (club_id -> Set<player_id>) em sincronia incremental
+// com jogador.club_id/ativo, evitando varreduras completas de Mundo.jogadores.
+
+function indiceAdicionarJogador(clubeId, playerId) {
+  if (!clubeId) return;
+  let set = Mundo.indiceElencos.get(clubeId);
+  if (!set) { set = new Set(); Mundo.indiceElencos.set(clubeId, set); }
+  set.add(playerId);
+}
+
+function indiceRemoverJogador(clubeId, playerId) {
+  if (!clubeId) return;
+  Mundo.indiceElencos.get(clubeId)?.delete(playerId);
+}
+
+function reconstruirIndiceElencos() {
+  Mundo.indiceElencos = new Map();
+  Mundo.jogadores.forEach(j => {
+    if (j.ativo && j.club_id) indiceAdicionarJogador(j.club_id, j.player_id);
+  });
+}
+
 // ─── SERIALIZAÇÃO ─────────────────────────────────────────────────────────────
 
 function serializarMundo() {
@@ -38,6 +62,7 @@ function serializarMundo() {
     jogadores: Object.fromEntries(Mundo.jogadores),
     torneios: Object.fromEntries(Mundo.torneios),
     tabelaH2H: Object.fromEntries(Mundo.tabelaH2H),
+    indiceElencos: Object.fromEntries([...Mundo.indiceElencos].map(([k, v]) => [k, [...v]])),
     logNoticias: Mundo.logNoticias.slice(0, 100),
     logTransferencias: Mundo.logTransferencias.slice(0, 200),
     politicaVeto: Mundo.politicaVeto,
@@ -65,6 +90,12 @@ function restaurarMundo(saved) {
   Mundo._eventosFiredIds = new Set(saved._eventosFiredIds || []);
   Mundo._regenIdCounter = saved._regenIdCounter || 5000;
   Mundo._torneioIdCounter = saved._torneioIdCounter || 1;
+
+  if (saved.indiceElencos) {
+    Mundo.indiceElencos = new Map(Object.entries(saved.indiceElencos).map(([k, v]) => [+k, new Set(v)]));
+  } else {
+    reconstruirIndiceElencos(); // compatibilidade com estados salvos antes deste índice existir
+  }
 }
 
 // ─── INICIALIZAÇÃO ────────────────────────────────────────────────────────────
@@ -124,6 +155,7 @@ function ativarEntidadesParaAno(ano) {
     const clube = Mundo.clubes.get(jogador.club_id);
     if (!clube || !clube.ativo) return;
     jogador.ativo = true;
+    indiceAdicionarJogador(jogador.club_id, jogador.player_id);
     normalizarAtributosLenda(jogador);
     publicarNoticia('estreia', `${jogador.nome} (${clube.nome}) entra em cena como ${jogador.posicao}!`);
   });
@@ -139,7 +171,8 @@ function normalizarAtributosLenda(jogador) {
 // ─── GERAÇÃO DE REGENS ────────────────────────────────────────────────────────
 
 function gerarRegensParaClube(clube) {
-  const existentes = [...Mundo.jogadores.values()].filter(j => j.club_id === clube.club_id && j.ativo);
+  const idsExistentes = Mundo.indiceElencos.get(clube.club_id);
+  const existentes = idsExistentes ? [...idsExistentes].map(id => Mundo.jogadores.get(id)).filter(Boolean) : [];
   const contagem = { Goleiro: 0, Zagueiro: 0, Meia: 0, Atacante: 0 };
   existentes.forEach(j => { if (contagem[j.posicao] !== undefined) contagem[j.posicao]++; });
 
@@ -178,6 +211,7 @@ function gerarRegensParaClube(clube) {
         regen: true,
       };
       Mundo.jogadores.set(jogador.player_id, jogador);
+      indiceAdicionarJogador(jogador.club_id, jogador.player_id);
     }
   }
 }
@@ -288,6 +322,7 @@ async function encerramentoDeAno() {
     if (j.idade >= Mundo.eraAtual.idadeAposentadoria) {
       j.ativo = false;
       j.aposentado = true;
+      indiceRemoverJogador(j.club_id, j.player_id);
       aposentados.push(j);
     }
   });
