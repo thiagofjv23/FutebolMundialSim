@@ -5,6 +5,7 @@
     "apelido": "Tricolor Carioca",
     "country_id": 55,
     "state_id": 21,
+    "divisao": 1,
     "anoFundacao": 1902,
     "prestigio": 75,
     "financas": 1200,
@@ -28,6 +29,7 @@
     "apelido": "Rubro-Negro",
     "country_id": 55,
     "state_id": 21,
+    "divisao": 1,
     "anoFundacao": 1911,
     "prestigio": 62,
     "financas": 900,
@@ -51,6 +53,7 @@
     "apelido": "Vasco",
     "country_id": 55,
     "state_id": 21,
+    "divisao": 2,
     "anoFundacao": 1898,
     "prestigio": 58,
     "financas": 800,
@@ -74,6 +77,7 @@
     "apelido": "América",
     "country_id": 55,
     "state_id": 21,
+    "divisao": 1,
     "anoFundacao": 1904,
     "prestigio": 60,
     "financas": 700,
@@ -97,6 +101,7 @@
     "apelido": "Bangu",
     "country_id": 55,
     "state_id": 21,
+    "divisao": 1,
     "anoFundacao": 1904,
     "prestigio": 42,
     "financas": 350,
@@ -120,6 +125,7 @@
     "apelido": "Estrela Solitária",
     "country_id": 55,
     "state_id": 21,
+    "divisao": 1,
     "anoFundacao": 1904,
     "prestigio": 65,
     "financas": 850,
@@ -143,6 +149,7 @@
     "apelido": "Galinho de Quintino",
     "country_id": 55,
     "state_id": 21,
+    "divisao": 1,
     "anoFundacao": 1898,
     "prestigio": 40,
     "financas": 300,
@@ -159,6 +166,318 @@
       "nivelInfraestrutura": 1
     },
     "torcida": { "locais": 700, "nacionais": 5, "mundiais": 0 }
+  },
+  {
+    "club_id": 108,
+    "nome": "Andarahy Athletico Club",
+    "apelido": "Andarahy",
+    "country_id": 55,
+    "state_id": 21,
+    "divisao": 1,
+    "anoFundacao": 1909,
+    "prestigio": 40,
+    "financas": 300,
+    "tecnico": {
+      "coach_id": 308,
+      "nome": "Mário Bittencourt",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 508,
+      "nome": "Campo do Andarahy",
+      "capacidade": 2000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 600, "nacionais": 5, "mundiais": 0 }
+  },
+  {
+    "club_id": 109,
+    "nome": "Villa Isabel Futebol Clube",
+    "apelido": "Villa Isabel",
+    "country_id": 55,
+    "state_id": 21,
+    "divisao": 1,
+    "anoFundacao": 1912,
+    "prestigio": 35,
+    "financas": 250,
+    "tecnico": {
+      "coach_id": 309,
+      "nome": "Heitor Moraes",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 509,
+      "nome": "Campo do Villa Isabel",
+      "capacidade": 1800,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 500, "nacionais": 5, "mundiais": 0 }
+  },
+  {
+    "club_id": 110,
+    "nome": "Palmeiras Atlético Clube",
+    "apelido": "Palmeiras Carioca",
+    "country_id": 55,
+    "state_id": 21,
+    "divisao": 1,
+    "anoFundacao": 1910,
+    "prestigio": 30,
+    "financas": 220,
+    "tecnico": {
+      "coach_id": 310,
+      "nome": "Adolfo Cardoso",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 510,
+      "nome": "Campo das Missões",
+      "capacidade": 1500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 400, "nacionais": 0, "mundiais": 0 }
+  },
+  {
+    "club_id": 111,
+    "nome": "Sport Club Mangueira",
+    "apelido": "Mangueira",
+    "country_id": 55,
+    "state_id": 21,
+    "divisao": 1,
+    "anoFundacao": 1906,
+    "prestigio": 30,
+    "financas": 200,
+    "tecnico": {
+      "coach_id": 311,
+      "nome": "Carlos Ferreira",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 511,
+      "nome": "Campo do Mangueira",
+      "capacidade": 1500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 400, "nacionais": 0, "mundiais": 0 }
+  },
+  {
+    "club_id": 112,
+    "nome": "Carioca Football Club",
+    "apelido": "Carioca",
+    "country_id": 55,
+    "state_id": 21,
+    "divisao": 2,
+    "anoFundacao": 1907,
+    "prestigio": 55,
+    "financas": 600,
+    "tecnico": {
+      "coach_id": 312,
+      "nome": "Pedro Coelho",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 512,
+      "nome": "Campo do Carioca",
+      "capacidade": 3000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 2200, "nacionais": 80, "mundiais": 0 }
+  },
+  {
+    "club_id": 113,
+    "nome": "Americano Football Club",
+    "apelido": "Americano Carioca",
+    "country_id": 55,
+    "state_id": 21,
+    "divisao": 2,
+    "anoFundacao": 1919,
+    "prestigio": 52,
+    "financas": 550,
+    "tecnico": {
+      "coach_id": 313,
+      "nome": "Gustavo Lins",
+      "estiloTatico": "ofensivo",
+      "formacao": "3-2-5"
+    },
+    "stadium": {
+      "stadium_id": 513,
+      "nome": "Campo do Americano Carioca",
+      "capacidade": 2500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 1800, "nacionais": 50, "mundiais": 0 }
+  },
+  {
+    "club_id": 114,
+    "nome": "Mackenzie Athletic Club",
+    "apelido": "Mackenzie",
+    "country_id": 55,
+    "state_id": 21,
+    "divisao": 2,
+    "anoFundacao": 1898,
+    "prestigio": 50,
+    "financas": 500,
+    "tecnico": {
+      "coach_id": 314,
+      "nome": "John McGregor",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 514,
+      "nome": "Campo do Mackenzie",
+      "capacidade": 2500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 1500, "nacionais": 30, "mundiais": 0 }
+  },
+  {
+    "club_id": 115,
+    "nome": "Clube Hellênico",
+    "apelido": "Hellênico",
+    "country_id": 55,
+    "state_id": 21,
+    "divisao": 2,
+    "anoFundacao": 1908,
+    "prestigio": 44,
+    "financas": 400,
+    "tecnico": {
+      "coach_id": 315,
+      "nome": "Demetrius Papadopoulos",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 515,
+      "nome": "Campo do Hellênico",
+      "capacidade": 2000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 1000, "nacionais": 15, "mundiais": 0 }
+  },
+  {
+    "club_id": 116,
+    "nome": "Club Rio de Janeiro",
+    "apelido": "Rio de Janeiro",
+    "country_id": 55,
+    "state_id": 21,
+    "divisao": 2,
+    "anoFundacao": 1905,
+    "prestigio": 41,
+    "financas": 350,
+    "tecnico": {
+      "coach_id": 316,
+      "nome": "Edmundo Câmara",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 516,
+      "nome": "Campo do Club Rio",
+      "capacidade": 2000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 900, "nacionais": 10, "mundiais": 0 }
+  },
+  {
+    "club_id": 117,
+    "nome": "Progresso Futebol Clube",
+    "apelido": "Progresso",
+    "country_id": 55,
+    "state_id": 21,
+    "divisao": 2,
+    "anoFundacao": 1912,
+    "prestigio": 37,
+    "financas": 280,
+    "tecnico": {
+      "coach_id": 317,
+      "nome": "Sebastião Braga",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 517,
+      "nome": "Campo do Progresso",
+      "capacidade": 1500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 700, "nacionais": 5, "mundiais": 0 }
+  },
+  {
+    "club_id": 118,
+    "nome": "Esperança Futebol Clube",
+    "apelido": "Esperança",
+    "country_id": 55,
+    "state_id": 21,
+    "divisao": 2,
+    "anoFundacao": 1910,
+    "prestigio": 34,
+    "financas": 250,
+    "tecnico": {
+      "coach_id": 318,
+      "nome": "Waldemar Nunes",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 518,
+      "nome": "Campo do Esperança",
+      "capacidade": 1500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 600, "nacionais": 0, "mundiais": 0 }
+  },
+  {
+    "club_id": 119,
+    "nome": "River Football Club",
+    "apelido": "River",
+    "country_id": 55,
+    "state_id": 21,
+    "divisao": 2,
+    "anoFundacao": 1912,
+    "prestigio": 30,
+    "financas": 220,
+    "tecnico": {
+      "coach_id": 319,
+      "nome": "Osvaldo Ramos",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 519,
+      "nome": "Campo do River",
+      "capacidade": 1200,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 450, "nacionais": 0, "mundiais": 0 }
+  },
+  {
+    "club_id": 120,
+    "nome": "Sport Club Brasil",
+    "apelido": "SC Brasil",
+    "country_id": 55,
+    "state_id": 21,
+    "divisao": 2,
+    "anoFundacao": 1908,
+    "prestigio": 22,
+    "financas": 180,
+    "tecnico": {
+      "coach_id": 320,
+      "nome": "Narciso Pinto",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 520,
+      "nome": "Campo do SC Brasil",
+      "capacidade": 1000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 300, "nacionais": 0, "mundiais": 0 }
   },
   {
     "club_id": 201,

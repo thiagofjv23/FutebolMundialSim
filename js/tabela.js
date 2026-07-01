@@ -26,10 +26,12 @@ const Tabela = (() => {
         </thead>
         <tbody>
           ${torneio.classificacao.map((l, i) => {
+            const numRebaixados = torneio.numRebaixados ?? 0;
+            const numPromovidos = torneio.numPromovidos ?? 0;
             let cls = '';
             if (i === 0) cls = 'zona-titulo';
-            else if (i < 3) cls = 'zona-promocao';
-            else if (i >= total - 2) cls = 'zona-rebaixamento';
+            else if (numPromovidos > 1 && i < numPromovidos) cls = 'zona-promocao';
+            else if (numRebaixados > 0 && i >= total - numRebaixados) cls = 'zona-rebaixamento';
             return `<tr class="${cls}" data-club-id="${l.club_id}">
               <td>${i + 1}</td>
               <td class="col-nome">${UI.linkClube(l.club_id)}</td>

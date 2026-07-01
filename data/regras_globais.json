@@ -73,8 +73,9 @@
     "25": { "nome": "São Paulo", "lat": -23.5, "lon": -46.6 }
   },
   "torneiosIniciais": [
-    { "nome": "Campeonato Paulista", "state_id": 25, "formato": "LIGA", "tier": "ESTADUAL", "tipoParticipante": "CLUBE", "minParticipantes": 2 },
-    { "nome": "Campeonato Carioca", "state_id": 21, "formato": "LIGA", "tier": "ESTADUAL", "tipoParticipante": "CLUBE", "minParticipantes": 2 },
+    { "nome": "Campeonato Paulista", "state_id": 25, "divisao": 1, "formato": "LIGA", "tier": "ESTADUAL", "tipoParticipante": "CLUBE", "minParticipantes": 2 },
+    { "nome": "Campeonato Carioca", "state_id": 21, "divisao": 1, "numRebaixados": 3, "formato": "LIGA", "tier": "ESTADUAL", "tipoParticipante": "CLUBE", "minParticipantes": 4 },
+    { "nome": "Segunda Divisão Carioca", "state_id": 21, "divisao": 2, "numPromovidos": 3, "formato": "LIGA", "tier": "ESTADUAL", "tipoParticipante": "CLUBE", "minParticipantes": 4 },
     { "nome": "Football League Division 1", "country_id": 44, "formato": "LIGA", "tier": "NACIONAL", "tipoParticipante": "CLUBE", "tipoCalendario": "CRUZADO", "semanaInicio": 33, "semanaFim": 22, "minParticipantes": 10 }
   ],
   "nomesRegensEN": {

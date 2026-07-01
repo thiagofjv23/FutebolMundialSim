@@ -317,6 +317,9 @@ const Simulador = (() => {
       tipoParticipante: config.tipoParticipante || 'CLUBE',
       state_id: config.state_id || null,
       country_id: config.country_id || null,
+      divisao: config.divisao ?? null,
+      numRebaixados: config.numRebaixados ?? 0,
+      numPromovidos: config.numPromovidos ?? 0,
       ativo: true,
       participantes,
       fixtures: [],
@@ -385,6 +388,23 @@ const Simulador = (() => {
     return fixtures;
   }
 
+  function aplicarPromocaoRebaixamento(t) {
+    if (t.formato !== 'LIGA' || !t.classificacao.length) return;
+    const { numRebaixados, numPromovidos, divisao } = t;
+    if (divisao === 1 && numRebaixados > 0) {
+      t.classificacao.slice(t.classificacao.length - numRebaixados).forEach(l => {
+        const c = Mundo.clubes.get(l.club_id);
+        if (c) c.divisao = 2;
+      });
+    }
+    if (divisao === 2 && numPromovidos > 0) {
+      t.classificacao.slice(0, numPromovidos).forEach(l => {
+        const c = Mundo.clubes.get(l.club_id);
+        if (c) c.divisao = 1;
+      });
+    }
+  }
+
   function criarTorneiosIniciais() {
     const anoAtual = Mundo.cronologia.anoAtual;
     const configs = Mundo.regrasGlobais?.torneiosIniciais || [];
@@ -393,7 +413,9 @@ const Simulador = (() => {
         .filter(c => {
           if (!c.ativo) return false;
           if (cfg.country_id) return c.country_id === cfg.country_id;
-          return c.state_id === cfg.state_id;
+          if (!c.state_id || c.state_id !== cfg.state_id) return false;
+          if (cfg.divisao !== undefined) return (c.divisao ?? 1) === cfg.divisao;
+          return true;
         })
         .map(c => c.club_id);
 
@@ -433,6 +455,7 @@ const Simulador = (() => {
         const nCampeao = Mundo.clubes.get(t.campeao)?.nome || '?';
         publicarNoticia('titulo', `Campeão do ${t.nome}: ${nCampeao}!`);
       }
+      aplicarPromocaoRebaixamento(t);
       t.ativo = false;
     });
     criarTorneiosIniciais();

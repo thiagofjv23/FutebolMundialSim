@@ -2,7 +2,7 @@
 
 // Incrementar quando mudanças estruturais no save state exigirem reinício automático.
 // Saves com versão diferente são descartados e o jogo começa do zero.
-const DATA_VERSION = 2;
+const DATA_VERSION = 3;
 
 const Mundo = {
   cronologia: { anoAtual: 1920, mesAtual: 1, semanaAtual: 1 },
@@ -368,7 +368,11 @@ async function passarProximoPasso() {
   Mundo.cronologia.semanaAtual++;
   Mundo.cronologia.mesAtual = Math.min(12, Math.ceil(Mundo.cronologia.semanaAtual / 4.334));
 
+  const _jáAtivos = new Set([...Mundo.clubes.values()].filter(c => c.ativo).map(c => c.club_id));
   ativarEntidadesParaAno(Mundo.cronologia.anoAtual);
+  Mundo.clubes.forEach(c => {
+    if (c.ativo && !_jáAtivos.has(c.club_id)) gerarRegensParaClube(c);
+  });
   await dispararEventosDaSemana(Mundo.cronologia.anoAtual, Mundo.cronologia.semanaAtual);
 
   // Recuperação física semanal (independente de jogar)
