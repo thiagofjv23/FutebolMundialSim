@@ -2,7 +2,7 @@
 
 // Incrementar quando mudanças estruturais no save state exigirem reinício automático.
 // Saves com versão diferente são descartados e o jogo começa do zero.
-const DATA_VERSION = 3;
+const DATA_VERSION = 4;
 
 const Mundo = {
   cronologia: { anoAtual: 1920, mesAtual: 1, semanaAtual: 1 },
@@ -252,7 +252,10 @@ function gerarRegensParaClube(clube) {
       const nome = nomes.masculinos[rngInt(0, nomes.masculinos.length - 1)];
       const sob  = nomes.sobrenomes[rngInt(0, nomes.sobrenomes.length - 1)];
       const idade = rngInt(18, 30);
-      const base = Math.min(85, Math.max(30, rngNormal(55, 12)));
+      const grandeza = clube.grandezaHistorica ?? clube.prestigio ?? 50;
+      const metrica = (clube.prestigio ?? 50) * 0.5 + grandeza * 0.5;
+      const media = 31 + metrica * 0.37;
+      const base = Math.min(85, Math.max(25, rngNormal(media, 12)));
 
       const atributos = {
         gol:      pos === 'Goleiro'  ? base : rngInt(5, 20),
@@ -422,6 +425,14 @@ async function encerramentoDeAno() {
     clube.torcida.locais = Math.round(clube.torcida.locais * (1 + taxa * 1.5));
     clube.torcida.nacionais = Math.round(clube.torcida.nacionais * (1 + taxa));
     clube.prestigio = Math.min(100, clube.prestigio + 2);
+  });
+
+  // Reversão à média: prestígio é puxado gradualmente em direção à grandeza histórica.
+  Mundo.clubes.forEach(clube => {
+    if (!clube.ativo) return;
+    const alvo = clube.grandezaHistorica ?? clube.prestigio;
+    const delta = Math.round((alvo - clube.prestigio) * 0.10);
+    clube.prestigio = Math.max(0, Math.min(100, clube.prestigio + delta));
   });
 
   // Crônica e limpeza

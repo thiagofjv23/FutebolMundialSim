@@ -8,6 +8,7 @@
     "divisao": 1,
     "anoFundacao": 1902,
     "prestigio": 75,
+    "grandezaHistorica": 82,
     "financas": 1200,
     "tecnico": {
       "coach_id": 301,
@@ -21,7 +22,11 @@
       "capacidade": 8000,
       "nivelInfraestrutura": 2
     },
-    "torcida": { "locais": 3000, "nacionais": 100, "mundiais": 0 }
+    "torcida": {
+      "locais": 3000,
+      "nacionais": 100,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 102,
@@ -32,6 +37,7 @@
     "divisao": 1,
     "anoFundacao": 1911,
     "prestigio": 62,
+    "grandezaHistorica": 95,
     "financas": 900,
     "tecnico": {
       "coach_id": 302,
@@ -45,7 +51,11 @@
       "capacidade": 5000,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 2000, "nacionais": 50, "mundiais": 0 }
+    "torcida": {
+      "locais": 2000,
+      "nacionais": 50,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 103,
@@ -56,6 +66,7 @@
     "divisao": 2,
     "anoFundacao": 1898,
     "prestigio": 58,
+    "grandezaHistorica": 88,
     "financas": 800,
     "tecnico": {
       "coach_id": 303,
@@ -69,7 +80,11 @@
       "capacidade": 4000,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 2500, "nacionais": 80, "mundiais": 0 }
+    "torcida": {
+      "locais": 2500,
+      "nacionais": 80,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 104,
@@ -80,6 +95,7 @@
     "divisao": 1,
     "anoFundacao": 1904,
     "prestigio": 60,
+    "grandezaHistorica": 55,
     "financas": 700,
     "tecnico": {
       "coach_id": 304,
@@ -93,7 +109,11 @@
       "capacidade": 3500,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 1800, "nacionais": 30, "mundiais": 0 }
+    "torcida": {
+      "locais": 1800,
+      "nacionais": 30,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 105,
@@ -104,6 +124,7 @@
     "divisao": 1,
     "anoFundacao": 1904,
     "prestigio": 42,
+    "grandezaHistorica": 45,
     "financas": 350,
     "tecnico": {
       "coach_id": 305,
@@ -117,7 +138,11 @@
       "capacidade": 2000,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 800, "nacionais": 10, "mundiais": 0 }
+    "torcida": {
+      "locais": 800,
+      "nacionais": 10,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 106,
@@ -128,6 +153,7 @@
     "divisao": 1,
     "anoFundacao": 1904,
     "prestigio": 65,
+    "grandezaHistorica": 82,
     "financas": 850,
     "tecnico": {
       "coach_id": 306,
@@ -141,7 +167,11 @@
       "capacidade": 4500,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 1800, "nacionais": 40, "mundiais": 0 }
+    "torcida": {
+      "locais": 1800,
+      "nacionais": 40,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 107,
@@ -152,6 +182,7 @@
     "divisao": 1,
     "anoFundacao": 1898,
     "prestigio": 40,
+    "grandezaHistorica": 38,
     "financas": 300,
     "tecnico": {
       "coach_id": 307,
@@ -165,7 +196,11 @@
       "capacidade": 2500,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 700, "nacionais": 5, "mundiais": 0 }
+    "torcida": {
+      "locais": 700,
+      "nacionais": 5,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 108,
@@ -176,6 +211,7 @@
     "divisao": 1,
     "anoFundacao": 1909,
     "prestigio": 40,
+    "grandezaHistorica": 25,
     "financas": 300,
     "tecnico": {
       "coach_id": 308,
@@ -189,7 +225,11 @@
       "capacidade": 2000,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 600, "nacionais": 5, "mundiais": 0 }
+    "torcida": {
+      "locais": 600,
+      "nacionais": 5,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 109,
@@ -200,6 +240,7 @@
     "divisao": 1,
     "anoFundacao": 1912,
     "prestigio": 35,
+    "grandezaHistorica": 22,
     "financas": 250,
     "tecnico": {
       "coach_id": 309,
@@ -213,7 +254,11 @@
       "capacidade": 1800,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 500, "nacionais": 5, "mundiais": 0 }
+    "torcida": {
+      "locais": 500,
+      "nacionais": 5,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 110,
@@ -224,6 +269,7 @@
     "divisao": 1,
     "anoFundacao": 1910,
     "prestigio": 30,
+    "grandezaHistorica": 20,
     "financas": 220,
     "tecnico": {
       "coach_id": 310,
@@ -237,7 +283,11 @@
       "capacidade": 1500,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 400, "nacionais": 0, "mundiais": 0 }
+    "torcida": {
+      "locais": 400,
+      "nacionais": 0,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 111,
@@ -248,6 +298,7 @@
     "divisao": 1,
     "anoFundacao": 1906,
     "prestigio": 30,
+    "grandezaHistorica": 22,
     "financas": 200,
     "tecnico": {
       "coach_id": 311,
@@ -261,7 +312,11 @@
       "capacidade": 1500,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 400, "nacionais": 0, "mundiais": 0 }
+    "torcida": {
+      "locais": 400,
+      "nacionais": 0,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 112,
@@ -272,6 +327,7 @@
     "divisao": 2,
     "anoFundacao": 1907,
     "prestigio": 55,
+    "grandezaHistorica": 30,
     "financas": 600,
     "tecnico": {
       "coach_id": 312,
@@ -285,7 +341,11 @@
       "capacidade": 3000,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 2200, "nacionais": 80, "mundiais": 0 }
+    "torcida": {
+      "locais": 2200,
+      "nacionais": 80,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 113,
@@ -296,6 +356,7 @@
     "divisao": 2,
     "anoFundacao": 1919,
     "prestigio": 52,
+    "grandezaHistorica": 28,
     "financas": 550,
     "tecnico": {
       "coach_id": 313,
@@ -309,7 +370,11 @@
       "capacidade": 2500,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 1800, "nacionais": 50, "mundiais": 0 }
+    "torcida": {
+      "locais": 1800,
+      "nacionais": 50,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 114,
@@ -320,6 +385,7 @@
     "divisao": 2,
     "anoFundacao": 1898,
     "prestigio": 50,
+    "grandezaHistorica": 30,
     "financas": 500,
     "tecnico": {
       "coach_id": 314,
@@ -333,7 +399,11 @@
       "capacidade": 2500,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 1500, "nacionais": 30, "mundiais": 0 }
+    "torcida": {
+      "locais": 1500,
+      "nacionais": 30,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 115,
@@ -344,6 +414,7 @@
     "divisao": 2,
     "anoFundacao": 1908,
     "prestigio": 44,
+    "grandezaHistorica": 25,
     "financas": 400,
     "tecnico": {
       "coach_id": 315,
@@ -357,7 +428,11 @@
       "capacidade": 2000,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 1000, "nacionais": 15, "mundiais": 0 }
+    "torcida": {
+      "locais": 1000,
+      "nacionais": 15,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 116,
@@ -368,6 +443,7 @@
     "divisao": 2,
     "anoFundacao": 1905,
     "prestigio": 41,
+    "grandezaHistorica": 25,
     "financas": 350,
     "tecnico": {
       "coach_id": 316,
@@ -381,7 +457,11 @@
       "capacidade": 2000,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 900, "nacionais": 10, "mundiais": 0 }
+    "torcida": {
+      "locais": 900,
+      "nacionais": 10,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 117,
@@ -392,6 +472,7 @@
     "divisao": 2,
     "anoFundacao": 1912,
     "prestigio": 37,
+    "grandezaHistorica": 20,
     "financas": 280,
     "tecnico": {
       "coach_id": 317,
@@ -405,7 +486,11 @@
       "capacidade": 1500,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 700, "nacionais": 5, "mundiais": 0 }
+    "torcida": {
+      "locais": 700,
+      "nacionais": 5,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 118,
@@ -416,6 +501,7 @@
     "divisao": 2,
     "anoFundacao": 1910,
     "prestigio": 34,
+    "grandezaHistorica": 20,
     "financas": 250,
     "tecnico": {
       "coach_id": 318,
@@ -429,7 +515,11 @@
       "capacidade": 1500,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 600, "nacionais": 0, "mundiais": 0 }
+    "torcida": {
+      "locais": 600,
+      "nacionais": 0,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 119,
@@ -440,6 +530,7 @@
     "divisao": 2,
     "anoFundacao": 1912,
     "prestigio": 30,
+    "grandezaHistorica": 18,
     "financas": 220,
     "tecnico": {
       "coach_id": 319,
@@ -453,7 +544,11 @@
       "capacidade": 1200,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 450, "nacionais": 0, "mundiais": 0 }
+    "torcida": {
+      "locais": 450,
+      "nacionais": 0,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 120,
@@ -464,6 +559,7 @@
     "divisao": 2,
     "anoFundacao": 1908,
     "prestigio": 22,
+    "grandezaHistorica": 15,
     "financas": 180,
     "tecnico": {
       "coach_id": 320,
@@ -477,7 +573,11 @@
       "capacidade": 1000,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 300, "nacionais": 0, "mundiais": 0 }
+    "torcida": {
+      "locais": 300,
+      "nacionais": 0,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 201,
@@ -487,6 +587,7 @@
     "state_id": 25,
     "anoFundacao": 1900,
     "prestigio": 82,
+    "grandezaHistorica": 42,
     "financas": 1500,
     "tecnico": {
       "coach_id": 401,
@@ -500,7 +601,11 @@
       "capacidade": 6000,
       "nivelInfraestrutura": 2
     },
-    "torcida": { "locais": 4000, "nacionais": 200, "mundiais": 0 }
+    "torcida": {
+      "locais": 4000,
+      "nacionais": 200,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 202,
@@ -510,6 +615,7 @@
     "state_id": 25,
     "anoFundacao": 1914,
     "prestigio": 58,
+    "grandezaHistorica": 90,
     "financas": 650,
     "tecnico": {
       "coach_id": 402,
@@ -523,7 +629,11 @@
       "capacidade": 5000,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 2200, "nacionais": 60, "mundiais": 0 }
+    "torcida": {
+      "locais": 2200,
+      "nacionais": 60,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 203,
@@ -533,6 +643,7 @@
     "state_id": 25,
     "anoFundacao": 1910,
     "prestigio": 55,
+    "grandezaHistorica": 92,
     "financas": 550,
     "tecnico": {
       "coach_id": 403,
@@ -546,7 +657,11 @@
       "capacidade": 4000,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 2800, "nacionais": 70, "mundiais": 0 }
+    "torcida": {
+      "locais": 2800,
+      "nacionais": 70,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 204,
@@ -556,6 +671,7 @@
     "state_id": 25,
     "anoFundacao": 1904,
     "prestigio": 48,
+    "grandezaHistorica": 35,
     "financas": 480,
     "tecnico": {
       "coach_id": 404,
@@ -569,7 +685,11 @@
       "capacidade": 3000,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 1000, "nacionais": 15, "mundiais": 0 }
+    "torcida": {
+      "locais": 1000,
+      "nacionais": 15,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 205,
@@ -579,6 +699,7 @@
     "state_id": 25,
     "anoFundacao": 1902,
     "prestigio": 42,
+    "grandezaHistorica": 30,
     "financas": 400,
     "tecnico": {
       "coach_id": 405,
@@ -592,7 +713,11 @@
       "capacidade": 2500,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 900, "nacionais": 10, "mundiais": 0 }
+    "torcida": {
+      "locais": 900,
+      "nacionais": 10,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 206,
@@ -602,6 +727,7 @@
     "state_id": 25,
     "anoFundacao": 1906,
     "prestigio": 38,
+    "grandezaHistorica": 28,
     "financas": 320,
     "tecnico": {
       "coach_id": 406,
@@ -615,7 +741,11 @@
       "capacidade": 2000,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 600, "nacionais": 5, "mundiais": 0 }
+    "torcida": {
+      "locais": 600,
+      "nacionais": 5,
+      "mundiais": 0
+    }
   },
   {
     "club_id": 207,
@@ -625,6 +755,7 @@
     "state_id": 25,
     "anoFundacao": 1912,
     "prestigio": 35,
+    "grandezaHistorica": 90,
     "financas": 300,
     "tecnico": {
       "coach_id": 407,
@@ -638,6 +769,10 @@
       "capacidade": 2000,
       "nivelInfraestrutura": 1
     },
-    "torcida": { "locais": 500, "nacionais": 5, "mundiais": 0 }
+    "torcida": {
+      "locais": 500,
+      "nacionais": 5,
+      "mundiais": 0
+    }
   }
 ]
