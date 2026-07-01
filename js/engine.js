@@ -2,7 +2,17 @@
 
 // Incrementar quando mudanças estruturais no save state exigirem reinício automático.
 // Saves com versão diferente são descartados e o jogo começa do zero.
-const DATA_VERSION = 4;
+const DATA_VERSION = 5;
+
+// Época de testes: quando true, o estado do mundo não é salvo nem restaurado.
+// Cada reload recomeça do zero em 1920. Colocar em false para reativar a persistência.
+let MODO_TESTE = true;
+if (typeof window !== 'undefined') window.MODO_TESTE = MODO_TESTE; // permite toggle via console
+
+function persistirMundo() {
+  if (MODO_TESTE) return Promise.resolve();
+  return DB.salvarEstado('mundo_atual', serializarMundo());
+}
 
 const Mundo = {
   cronologia: { anoAtual: 1920, mesAtual: 1, semanaAtual: 1 },
@@ -106,7 +116,7 @@ function restaurarMundo(saved) {
 // ─── INICIALIZAÇÃO ────────────────────────────────────────────────────────────
 
 async function inicializarMundo() {
-  const saved = await DB.carregarEstado('mundo_atual');
+  const saved = MODO_TESTE ? null : await DB.carregarEstado('mundo_atual');
   if (saved && saved.cronologia && saved._dataVersion === DATA_VERSION) {
     restaurarMundo(saved);
 
@@ -156,7 +166,7 @@ async function inicializarMundo() {
         }
 
         publicarNoticia('sistema', 'Base de dados inglesa carregada — Football League Division 1 ativada!');
-        await DB.salvarEstado('mundo_atual', serializarMundo());
+        await persistirMundo();
       } catch (e) { console.warn('Falha ao carregar dados EN:', e); }
     }
 
@@ -190,7 +200,7 @@ async function inicializarMundo() {
 
   Simulador.criarTorneiosIniciais();
 
-  await DB.salvarEstado('mundo_atual', serializarMundo());
+  await persistirMundo();
   publicarNoticia('sistema', `Simulação iniciada! Brasil & Inglaterra, ${Mundo.cronologia.anoAtual}. Era: ${Mundo.eraAtual.nome}`);
 }
 
@@ -364,7 +374,7 @@ async function executarFila() {
   Mundo.filaDeExecucao.escalaAtiva = 'parado';
   UI.setBotoesTempoAtivos(true);
   UI.atualizarTodosOsPaineis();
-  DB.salvarEstado('mundo_atual', serializarMundo()).catch(console.error);
+  persistirMundo().catch(console.error);
 }
 
 async function passarProximoPasso() {

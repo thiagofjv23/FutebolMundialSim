@@ -436,6 +436,9 @@ const Simulador = (() => {
         semanaFim: cfg.semanaFim ?? 51,
         state_id: cfg.state_id || null,
         country_id: cfg.country_id || null,
+        divisao: cfg.divisao ?? null,
+        numRebaixados: cfg.numRebaixados ?? 0,
+        numPromovidos: cfg.numPromovidos ?? 0,
         participantes,
       });
     });
