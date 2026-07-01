@@ -6,10 +6,12 @@ const Cronica = (() => {
     // Campeões por torneio
     const campeoes = [];
     Mundo.torneios.forEach(t => {
-      if (t.ano === ano && t.classificacao.length > 0) {
-        const c = Mundo.clubes.get(t.classificacao[0].club_id);
-        campeoes.push({ torneio: t.nome, clube: c?.nome || '?', club_id: t.classificacao[0].club_id });
-      }
+      // Inclui torneios do próprio ano E torneios CRUZADOS do ano anterior (que encerram neste ano)
+      const pertenceAEsteAno = t.ano === ano
+        || (t.tipoCalendario === 'CRUZADO' && t.ano === ano - 1);
+      if (!pertenceAEsteAno || !t.classificacao.length) return;
+      const c = Mundo.clubes.get(t.classificacao[0].club_id);
+      campeoes.push({ torneio: t.nome, clube: c?.nome || '?', club_id: t.classificacao[0].club_id });
     });
 
     // Artilheiro global (do log de notícias de gol)

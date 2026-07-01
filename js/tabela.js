@@ -54,15 +54,24 @@ const Tabela = (() => {
     // After a year rolls over (week 1 of new year), keep the previous year's
     // final standings visible until the first game week is simulated (semana > 1).
     const anoAnterior = anoAtual - 1;
+    // Torneios finais: MESMO_ANO do ano anterior + CRUZADO criados dois anos atrás (encerrados agora)
     const torneiosFinais = [...Mundo.torneios.values()]
-      .filter(t => !t.ativo && t.ano === anoAnterior
-               && Array.isArray(t.classificacao) && t.classificacao.length)
+      .filter(t => !t.ativo && Array.isArray(t.classificacao) && t.classificacao.length && (
+        t.ano === anoAnterior ||
+        (t.tipoCalendario === 'CRUZADO' && t.ano === anoAnterior - 1)
+      ))
       .sort((a, b) => a.nome.localeCompare(b.nome));
     const mostrarFinais = semanaAtual === 1 && torneiosFinais.length > 0;
 
+    // Torneios ativos: do ano atual + torneios CRUZADOS criados no ano anterior (ainda em curso)
     const torneiosParaMostrar = mostrarFinais
       ? torneiosFinais
-      : [...Mundo.torneios.values()].filter(t => t.ativo && t.ano === anoAtual);
+      : [...Mundo.torneios.values()].filter(t =>
+          t.ativo && (
+            t.ano === anoAtual ||
+            (t.tipoCalendario === 'CRUZADO' && t.ano === anoAtual - 1)
+          )
+        );
 
     // Tabs
     const tabsHtml = torneiosParaMostrar.map((t, i) =>

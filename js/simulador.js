@@ -287,11 +287,16 @@ const Simulador = (() => {
     const torneio = {
       tournament_id: id,
       nome: config.nome || `Torneio ${id}`,
+      nomeBase: config.nomeBase || config.nome || `Torneio ${id}`,
       ano: Mundo.cronologia.anoAtual,
+      tipoCalendario: config.tipoCalendario || 'MESMO_ANO',
+      semanaInicio: config.semanaInicio ?? 3,
+      semanaFim: config.semanaFim ?? 51,
       formato: config.formato || 'LIGA',
       tier: config.tier || 'ESTADUAL',
       tipoParticipante: config.tipoParticipante || 'CLUBE',
       state_id: config.state_id || null,
+      country_id: config.country_id || null,
       ativo: true,
       participantes,
       fixtures: [],
@@ -300,14 +305,14 @@ const Simulador = (() => {
     };
 
     if (torneio.formato === 'LIGA') {
-      torneio.fixtures = gerarFixturesLiga(participantes);
+      torneio.fixtures = gerarFixturesLiga(participantes, torneio.semanaInicio, torneio.semanaFim);
     }
 
     Mundo.torneios.set(id, torneio);
     return torneio;
   }
 
-  function gerarFixturesLiga(participantes) {
+  function gerarFixturesLiga(participantes, semanaInicio = 3, semanaFim = 51) {
     const times = [...participantes];
     if (times.length % 2 !== 0) times.push(null); // bye
     const n = times.length;
@@ -325,11 +330,22 @@ const Simulador = (() => {
       times.splice(1, 0, times.pop());
     }
 
-    // Distribuir rodadas uniformemente nas 52 semanas (começando na semana 3)
     const totalRodadas = rodadas.length;
     const semanas = [];
-    for (let i = 0; i < totalRodadas; i++) {
-      semanas.push(Math.round(3 + (i * (48 / Math.max(1, totalRodadas - 1)))));
+
+    if (semanaFim >= semanaInicio) {
+      // MESMO_ANO: distribui linearmente dentro do mesmo ano
+      for (let i = 0; i < totalRodadas; i++) {
+        semanas.push(Math.round(semanaInicio + (i * (semanaFim - semanaInicio) / Math.max(1, totalRodadas - 1))));
+      }
+    } else {
+      // CRUZADO: distribui por [semanaInicio..52] + [1..semanaFim]
+      const totalSemanas = (52 - semanaInicio + 1) + semanaFim;
+      const partePrimeira = 52 - semanaInicio + 1;
+      for (let i = 0; i < totalRodadas; i++) {
+        const pos = Math.round(i * (totalSemanas - 1) / Math.max(1, totalRodadas - 1));
+        semanas.push(pos < partePrimeira ? semanaInicio + pos : pos - partePrimeira + 1);
+      }
     }
 
     const fixtures = [];
@@ -343,20 +359,34 @@ const Simulador = (() => {
   }
 
   function criarTorneiosIniciais() {
+    const anoAtual = Mundo.cronologia.anoAtual;
     const configs = Mundo.regrasGlobais?.torneiosIniciais || [];
     configs.forEach(cfg => {
       const participantes = [...Mundo.clubes.values()]
-        .filter(c => c.ativo && c.state_id === cfg.state_id)
+        .filter(c => {
+          if (!c.ativo) return false;
+          if (cfg.country_id) return c.country_id === cfg.country_id;
+          return c.state_id === cfg.state_id;
+        })
         .map(c => c.club_id);
 
       if (participantes.length < (cfg.minParticipantes || 2)) return;
 
+      const sufixo = cfg.tipoCalendario === 'CRUZADO'
+        ? `${anoAtual}/${String(anoAtual + 1).slice(-2)}`
+        : String(anoAtual);
+
       criarTorneio({
-        nome: `${cfg.nome} ${Mundo.cronologia.anoAtual}`,
+        nome: `${cfg.nome} ${sufixo}`,
+        nomeBase: cfg.nome,
         formato: cfg.formato,
         tier: cfg.tier,
         tipoParticipante: cfg.tipoParticipante,
-        state_id: cfg.state_id,
+        tipoCalendario: cfg.tipoCalendario || 'MESMO_ANO',
+        semanaInicio: cfg.semanaInicio ?? 3,
+        semanaFim: cfg.semanaFim ?? 51,
+        state_id: cfg.state_id || null,
+        country_id: cfg.country_id || null,
         participantes,
       });
     });
@@ -365,15 +395,18 @@ const Simulador = (() => {
   function renovarTorneiosAnuais() {
     // Encerrar torneios do ano anterior e criar novos
     Mundo.torneios.forEach(t => {
-      if (t.ativo && t.ano < Mundo.cronologia.anoAtual) {
-        // Determinar campeão
-        if (t.classificacao.length > 0) {
-          t.campeao = t.classificacao[0].club_id;
-          const nCampeao = Mundo.clubes.get(t.campeao)?.nome || '?';
-          publicarNoticia('titulo', `Campeão do ${t.nome}: ${nCampeao}!`);
-        }
-        t.ativo = false;
+      if (!t.ativo) return;
+      // CRUZADO sobrevive ao primeiro rollover (encerra só quando anoAtual > ano+1)
+      const deveEncerrar = t.tipoCalendario === 'CRUZADO'
+        ? Mundo.cronologia.anoAtual > t.ano + 1
+        : t.ano < Mundo.cronologia.anoAtual;
+      if (!deveEncerrar) return;
+      if (t.classificacao.length > 0) {
+        t.campeao = t.classificacao[0].club_id;
+        const nCampeao = Mundo.clubes.get(t.campeao)?.nome || '?';
+        publicarNoticia('titulo', `Campeão do ${t.nome}: ${nCampeao}!`);
       }
+      t.ativo = false;
     });
     criarTorneiosIniciais();
   }

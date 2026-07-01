@@ -22,7 +22,7 @@ const Historia = (() => {
       if (!t.campeao) return; // torneio ainda não encerrado
 
       // Palmarès
-      palmares.push({ ano: t.ano, torneioNome: t.nome, campeoId: t.campeao });
+      palmares.push({ ano: t.ano, torneioNome: t.nome, torneioNomeBase: t.nomeBase, campeoId: t.campeao });
       titulosPorClube[t.campeao] = (titulosPorClube[t.campeao] || 0) + 1;
 
       // Recordes de temporada (iterar toda a classificação, não só o campeão)
@@ -104,7 +104,7 @@ const Historia = (() => {
 
     const anoInicio = stats.palmares[stats.palmares.length - 1].ano;
     const anoFim    = stats.palmares[0].ano;
-    const nomesTorneios = [...new Set(stats.palmares.map(p => p.torneioNome.replace(/ \d+$/, '')))];
+    const nomesTorneios = [...new Set(stats.palmares.map(p => p.torneioNomeBase || p.torneioNome.replace(/ [\d\/]+$/, '')))];
 
     el.innerHTML = `
       <div class="entidade-header">
@@ -165,7 +165,7 @@ const Historia = (() => {
 
   function _renderTabPalmares(stats, nomesTorneios, filtro) {
     const lista = filtro
-      ? stats.palmares.filter(p => p.torneioNome.replace(/ \d+$/, '') === filtro)
+      ? stats.palmares.filter(p => (p.torneioNomeBase || p.torneioNome.replace(/ [\d\/]+$/, '')) === filtro)
       : stats.palmares;
 
     const opcoes = nomesTorneios.map(n =>
@@ -173,7 +173,7 @@ const Historia = (() => {
     ).join('');
 
     const linhasHistorico = lista.map((p, i) => {
-      const base = p.torneioNome.replace(/ \d+$/, '');
+      const base = p.torneioNomeBase || p.torneioNome.replace(/ [\d\/]+$/, '');
       return `<tr>
         <td style="color:var(--text-muted)">${i + 1}</td>
         <td>${p.ano}</td>

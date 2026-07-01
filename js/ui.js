@@ -426,7 +426,7 @@ const UI = (() => {
 
     const linhas = titulos.map(t => `<tr>
       <td>${t.ano}</td>
-      <td class="col-nome" style="text-align:left">${_escapeHtml(t.nome.replace(/ \d+$/, ''))}</td>
+      <td class="col-nome" style="text-align:left">${_escapeHtml(t.nomeBase || t.nome.replace(/ [\d\/]+$/, ''))}</td>
     </tr>`).join('');
 
     return `
@@ -447,8 +447,8 @@ const UI = (() => {
               && Array.isArray(t.classificacao) && t.classificacao.length)
       .sort((a, b) => (b.ano - a.ano) || a.nome.localeCompare(b.nome));
 
-    const baseNames = [...new Set(todos.map(t => t.nome.replace(/ \d+$/, '')))];
-    const lista = filtro ? todos.filter(t => t.nome.replace(/ \d+$/, '') === filtro) : todos;
+    const baseNames = [...new Set(todos.map(t => t.nomeBase || t.nome.replace(/ [\d\/]+$/, '')))];
+    const lista = filtro ? todos.filter(t => t.nomeBase || t.nome.replace(/ [\d\/]+$/, '') === filtro) : todos;
     const opcoes = baseNames.map(n =>
       `<option value="${n}"${filtro === n ? ' selected' : ''}>${n}</option>`
     ).join('');
@@ -467,7 +467,7 @@ const UI = (() => {
         : l.sg < 0 ? `<span class="neg">${l.sg}</span>` : String(l.sg);
       return `<tr${isCampeao ? ' class="zona-titulo"' : ''}>
         <td>${t.ano}</td>
-        <td class="col-nome" style="text-align:left;font-size:12px">${_escapeHtml(t.nome.replace(/ \d+$/, ''))}</td>
+        <td class="col-nome" style="text-align:left;font-size:12px">${_escapeHtml(t.nomeBase || t.nome.replace(/ [\d\/]+$/, ''))}</td>
         <td>${icone}${pos}º</td>
         <td>${l.pts}</td><td>${l.j}</td><td>${l.v}</td><td>${l.e}</td><td>${l.d}</td><td>${sg}</td>
       </tr>`;
