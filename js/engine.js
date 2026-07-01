@@ -1,5 +1,9 @@
 'use strict';
 
+// Incrementar quando mudanças estruturais no save state exigirem reinício automático.
+// Saves com versão diferente são descartados e o jogo começa do zero.
+const DATA_VERSION = 2;
+
 const Mundo = {
   cronologia: { anoAtual: 1920, mesAtual: 1, semanaAtual: 1 },
   filaDeExecucao: { passosRestantes: 0, escalaAtiva: 'parado' },
@@ -72,6 +76,7 @@ function serializarMundo() {
     _eventosFiredIds: [...Mundo._eventosFiredIds],
     _regenIdCounter: Mundo._regenIdCounter,
     _torneioIdCounter: Mundo._torneioIdCounter,
+    _dataVersion: DATA_VERSION,
   };
 }
 
@@ -102,7 +107,7 @@ function restaurarMundo(saved) {
 
 async function inicializarMundo() {
   const saved = await DB.carregarEstado('mundo_atual');
-  if (saved && saved.cronologia) {
+  if (saved && saved.cronologia && saved._dataVersion === DATA_VERSION) {
     restaurarMundo(saved);
 
     // Always reload regras_globais to pick up new configs (new tournaments, EN names, rivalries).
