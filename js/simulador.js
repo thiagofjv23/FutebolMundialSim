@@ -109,6 +109,16 @@ const Simulador = (() => {
 
   // ─── MOTOR DE PARTIDAS ──────────────────────────────────────────────────────
 
+  function randomNormal(mean = 1.0, stdev = 0.1) {
+    const u = 1 - Math.random();
+    const v = Math.random();
+    return mean + Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v) * stdev;
+  }
+
+  function calcularFatorPartida(sigma) {
+    return Math.max(0.5, randomNormal(1.0, sigma));
+  }
+
   function simularGols(xG) {
     // Poisson approximation via successive multiplication
     let k = 0, p = Math.exp(-xG), cumP = p;
@@ -117,11 +127,11 @@ const Simulador = (() => {
     return k;
   }
 
-  function calcularXG(ataqNorm, defNorm) {
+  function calcularXG(ataqNorm, defNorm, fatorPartida = 1.0) {
     const base = (Mundo.eraAtual?.xGBase || 1.5) * Math.pow(ataqNorm / Math.max(0.1, defNorm), 0.75);
-    const caos = Mundo.eraAtual?.fatorCaos || 0.35;
-    const fator = 1.0 + (Math.random() * 2 - 1) * caos;
-    return Math.max(0, base * fator * 0.65);
+    const stdev = (Mundo.eraAtual?.fatorCaos || 0.35) / 2.0;
+    const fatorTime = Math.max(0.2, randomNormal(1.0, stdev));
+    return Math.max(0, base * fatorTime * fatorPartida * 0.65);
   }
 
   function determinarArtilheiros(titulares, numGols) {
@@ -178,8 +188,10 @@ const Simulador = (() => {
     const atNormVisit = (tVisit.ataque * 0.6 + tVisit.armacao * 0.4) / 100;
     const defNormVisit= (tCasa.gol     * 0.4 + tCasa.defesa   * 0.6) / 100;
 
-    const golsCasa  = simularGols(calcularXG(atNormCasa,  defNormCasa));
-    const golsVisit = simularGols(calcularXG(atNormVisit, defNormVisit));
+    const SIGMA_PARTIDA = 0.08;
+    const fp = calcularFatorPartida(SIGMA_PARTIDA);
+    const golsCasa  = simularGols(calcularXG(atNormCasa,  defNormCasa,  fp));
+    const golsVisit = simularGols(calcularXG(atNormVisit, defNormVisit, fp));
 
     return {
       golsCasa,
