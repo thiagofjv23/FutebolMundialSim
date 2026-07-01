@@ -1,0 +1,508 @@
+[
+  {
+    "club_id": 301,
+    "nome": "Burnley FC",
+    "apelido": "The Clarets",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1882,
+    "prestigio": 85,
+    "financas": 2500,
+    "tecnico": {
+      "coach_id": 801,
+      "nome": "John Haworth",
+      "estiloTatico": "ofensivo",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 701,
+      "nome": "Turf Moor",
+      "capacidade": 22000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": { "locais": 6000, "nacionais": 200, "mundiais": 0 }
+  },
+  {
+    "club_id": 302,
+    "nome": "Manchester City FC",
+    "apelido": "The Citizens",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1880,
+    "prestigio": 78,
+    "financas": 2200,
+    "tecnico": {
+      "coach_id": 802,
+      "nome": "Ernest Mangnall",
+      "estiloTatico": "ofensivo",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 702,
+      "nome": "Hyde Road",
+      "capacidade": 35000,
+      "nivelInfraestrutura": 3
+    },
+    "torcida": { "locais": 10000, "nacionais": 400, "mundiais": 0 }
+  },
+  {
+    "club_id": 303,
+    "nome": "Bolton Wanderers FC",
+    "apelido": "The Trotters",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1874,
+    "prestigio": 76,
+    "financas": 2100,
+    "tecnico": {
+      "coach_id": 803,
+      "nome": "Charles Foweraker",
+      "estiloTatico": "ofensivo",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 703,
+      "nome": "Burnden Park",
+      "capacidade": 30000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": { "locais": 8000, "nacionais": 300, "mundiais": 0 }
+  },
+  {
+    "club_id": 304,
+    "nome": "Liverpool FC",
+    "apelido": "The Reds",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1892,
+    "prestigio": 74,
+    "financas": 2000,
+    "tecnico": {
+      "coach_id": 804,
+      "nome": "David Ashworth",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 704,
+      "nome": "Anfield",
+      "capacidade": 45000,
+      "nivelInfraestrutura": 3
+    },
+    "torcida": { "locais": 12000, "nacionais": 500, "mundiais": 0 }
+  },
+  {
+    "club_id": 305,
+    "nome": "Newcastle United FC",
+    "apelido": "The Magpies",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1892,
+    "prestigio": 72,
+    "financas": 1900,
+    "tecnico": {
+      "coach_id": 805,
+      "nome": "Frank Watt",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 705,
+      "nome": "St James' Park",
+      "capacidade": 50000,
+      "nivelInfraestrutura": 3
+    },
+    "torcida": { "locais": 15000, "nacionais": 600, "mundiais": 0 }
+  },
+  {
+    "club_id": 306,
+    "nome": "Tottenham Hotspur FC",
+    "apelido": "Spurs",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1882,
+    "prestigio": 70,
+    "financas": 1800,
+    "tecnico": {
+      "coach_id": 806,
+      "nome": "Peter McWilliam",
+      "estiloTatico": "ofensivo",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 706,
+      "nome": "White Hart Lane",
+      "capacidade": 35000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": { "locais": 10000, "nacionais": 400, "mundiais": 0 }
+  },
+  {
+    "club_id": 307,
+    "nome": "Everton FC",
+    "apelido": "The Toffees",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1878,
+    "prestigio": 70,
+    "financas": 1800,
+    "tecnico": {
+      "coach_id": 807,
+      "nome": "Tom McIntosh",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 707,
+      "nome": "Goodison Park",
+      "capacidade": 50000,
+      "nivelInfraestrutura": 3
+    },
+    "torcida": { "locais": 15000, "nacionais": 600, "mundiais": 0 }
+  },
+  {
+    "club_id": 308,
+    "nome": "Middlesbrough FC",
+    "apelido": "Boro",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1876,
+    "prestigio": 68,
+    "financas": 1700,
+    "tecnico": {
+      "coach_id": 808,
+      "nome": "Jimmy Howie",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 708,
+      "nome": "Ayresome Park",
+      "capacidade": 28000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": { "locais": 7000, "nacionais": 200, "mundiais": 0 }
+  },
+  {
+    "club_id": 309,
+    "nome": "Arsenal FC",
+    "apelido": "The Gunners",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1886,
+    "prestigio": 68,
+    "financas": 1700,
+    "tecnico": {
+      "coach_id": 809,
+      "nome": "Leslie Knighton",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 709,
+      "nome": "Highbury",
+      "capacidade": 20000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": { "locais": 5000, "nacionais": 200, "mundiais": 0 }
+  },
+  {
+    "club_id": 310,
+    "nome": "Aston Villa FC",
+    "apelido": "The Villans",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1874,
+    "prestigio": 67,
+    "financas": 1650,
+    "tecnico": {
+      "coach_id": 810,
+      "nome": "George Ramsay",
+      "estiloTatico": "ofensivo",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 710,
+      "nome": "Villa Park",
+      "capacidade": 50000,
+      "nivelInfraestrutura": 3
+    },
+    "torcida": { "locais": 15000, "nacionais": 600, "mundiais": 0 }
+  },
+  {
+    "club_id": 311,
+    "nome": "Blackburn Rovers FC",
+    "apelido": "Rovers",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1875,
+    "prestigio": 65,
+    "financas": 1500,
+    "tecnico": {
+      "coach_id": 811,
+      "nome": "John Cartwright",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 711,
+      "nome": "Ewood Park",
+      "capacidade": 25000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": { "locais": 6000, "nacionais": 200, "mundiais": 0 }
+  },
+  {
+    "club_id": 312,
+    "nome": "Sunderland AFC",
+    "apelido": "The Black Cats",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1879,
+    "prestigio": 65,
+    "financas": 1500,
+    "tecnico": {
+      "coach_id": 812,
+      "nome": "Robert Kyle",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 712,
+      "nome": "Roker Park",
+      "capacidade": 45000,
+      "nivelInfraestrutura": 3
+    },
+    "torcida": { "locais": 12000, "nacionais": 400, "mundiais": 0 }
+  },
+  {
+    "club_id": 313,
+    "nome": "Manchester United FC",
+    "apelido": "The Red Devils",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1878,
+    "prestigio": 63,
+    "financas": 1400,
+    "tecnico": {
+      "coach_id": 813,
+      "nome": "Jack Robson",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 713,
+      "nome": "Old Trafford",
+      "capacidade": 60000,
+      "nivelInfraestrutura": 3
+    },
+    "torcida": { "locais": 18000, "nacionais": 600, "mundiais": 0 }
+  },
+  {
+    "club_id": 314,
+    "nome": "West Bromwich Albion FC",
+    "apelido": "The Throstles",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1878,
+    "prestigio": 63,
+    "financas": 1400,
+    "tecnico": {
+      "coach_id": 814,
+      "nome": "Fred Everiss",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 714,
+      "nome": "The Hawthorns",
+      "capacidade": 35000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": { "locais": 8000, "nacionais": 300, "mundiais": 0 }
+  },
+  {
+    "club_id": 315,
+    "nome": "Bradford City AFC",
+    "apelido": "The Bantams",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1903,
+    "prestigio": 60,
+    "financas": 1200,
+    "tecnico": {
+      "coach_id": 815,
+      "nome": "David Menzies",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 715,
+      "nome": "Valley Parade",
+      "capacidade": 25000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": { "locais": 6000, "nacionais": 150, "mundiais": 0 }
+  },
+  {
+    "club_id": 316,
+    "nome": "Preston North End FC",
+    "apelido": "The Lilywhites",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1880,
+    "prestigio": 60,
+    "financas": 1200,
+    "tecnico": {
+      "coach_id": 816,
+      "nome": "Vincent Hayes",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 716,
+      "nome": "Deepdale",
+      "capacidade": 20000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": { "locais": 5000, "nacionais": 150, "mundiais": 0 }
+  },
+  {
+    "club_id": 317,
+    "nome": "Huddersfield Town AFC",
+    "apelido": "The Terriers",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1908,
+    "prestigio": 60,
+    "financas": 1200,
+    "tecnico": {
+      "coach_id": 817,
+      "nome": "Arthur Fairclough",
+      "estiloTatico": "defensivo",
+      "formacao": "3-2-5"
+    },
+    "stadium": {
+      "stadium_id": 717,
+      "nome": "Leeds Road",
+      "capacidade": 22000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": { "locais": 5000, "nacionais": 150, "mundiais": 0 }
+  },
+  {
+    "club_id": 318,
+    "nome": "Chelsea FC",
+    "apelido": "The Blues",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1905,
+    "prestigio": 60,
+    "financas": 1200,
+    "tecnico": {
+      "coach_id": 818,
+      "nome": "David Calderhead",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 718,
+      "nome": "Stamford Bridge",
+      "capacidade": 70000,
+      "nivelInfraestrutura": 3
+    },
+    "torcida": { "locais": 20000, "nacionais": 800, "mundiais": 0 }
+  },
+  {
+    "club_id": 319,
+    "nome": "Oldham Athletic AFC",
+    "apelido": "The Latics",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1895,
+    "prestigio": 55,
+    "financas": 1000,
+    "tecnico": {
+      "coach_id": 819,
+      "nome": "Herbert Bamlett",
+      "estiloTatico": "defensivo",
+      "formacao": "3-2-5"
+    },
+    "stadium": {
+      "stadium_id": 719,
+      "nome": "Boundary Park",
+      "capacidade": 18000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 4500, "nacionais": 100, "mundiais": 0 }
+  },
+  {
+    "club_id": 320,
+    "nome": "Sheffield United FC",
+    "apelido": "The Blades",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1889,
+    "prestigio": 55,
+    "financas": 1000,
+    "tecnico": {
+      "coach_id": 820,
+      "nome": "John Nicholson",
+      "estiloTatico": "defensivo",
+      "formacao": "3-2-5"
+    },
+    "stadium": {
+      "stadium_id": 720,
+      "nome": "Bramall Lane",
+      "capacidade": 35000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": { "locais": 10000, "nacionais": 350, "mundiais": 0 }
+  },
+  {
+    "club_id": 321,
+    "nome": "Derby County FC",
+    "apelido": "The Rams",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1884,
+    "prestigio": 52,
+    "financas": 900,
+    "tecnico": {
+      "coach_id": 821,
+      "nome": "Jimmy Methven",
+      "estiloTatico": "defensivo",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 721,
+      "nome": "Baseball Ground",
+      "capacidade": 25000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": { "locais": 6000, "nacionais": 200, "mundiais": 0 }
+  },
+  {
+    "club_id": 322,
+    "nome": "Bradford Park Avenue AFC",
+    "apelido": "Avenue",
+    "country_id": 44,
+    "state_id": null,
+    "anoFundacao": 1907,
+    "prestigio": 50,
+    "financas": 800,
+    "tecnico": {
+      "coach_id": 822,
+      "nome": "Fred Dawson",
+      "estiloTatico": "defensivo",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 722,
+      "nome": "Park Avenue",
+      "capacidade": 15000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": { "locais": 3500, "nacionais": 100, "mundiais": 0 }
+  }
+]

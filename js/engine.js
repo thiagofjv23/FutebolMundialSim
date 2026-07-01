@@ -108,12 +108,19 @@ async function inicializarMundo() {
     return;
   }
 
-  const [regras, clubes, jogadores, eventos] = await Promise.all([
+  const [regras, clubesBR, jogadoresBR, eventosBR, clubesEN, jogadoresEN, eventosEN] = await Promise.all([
     fetch('data/regras_globais.json').then(r => r.json()),
     fetch('data/br/clubes.json').then(r => r.json()),
     fetch('data/br/jogadores.json').then(r => r.json()),
     fetch('data/br/eventos.json').then(r => r.json()),
+    fetch('data/en/clubes.json').then(r => r.json()),
+    fetch('data/en/jogadores.json').then(r => r.json()),
+    fetch('data/en/eventos.json').then(r => r.json()),
   ]);
+
+  const clubes = [...clubesBR, ...clubesEN];
+  const jogadores = [...jogadoresBR, ...jogadoresEN];
+  const eventos = [...eventosBR, ...eventosEN];
 
   Mundo.regrasGlobais = regras;
   Mundo.eventos = eventos;
@@ -128,7 +135,7 @@ async function inicializarMundo() {
   Simulador.criarTorneiosIniciais();
 
   await DB.salvarEstado('mundo_atual', serializarMundo());
-  publicarNoticia('sistema', `Simulação iniciada! Brasil, ${Mundo.cronologia.anoAtual}. Era: ${Mundo.eraAtual.nome}`);
+  publicarNoticia('sistema', `Simulação iniciada! Brasil & Inglaterra, ${Mundo.cronologia.anoAtual}. Era: ${Mundo.eraAtual.nome}`);
 }
 
 // ─── ERAS ─────────────────────────────────────────────────────────────────────
@@ -178,7 +185,9 @@ function gerarRegensParaClube(clube) {
   existentes.forEach(j => { if (contagem[j.posicao] !== undefined) contagem[j.posicao]++; });
 
   const alvo = { Goleiro: 2, Zagueiro: 5, Meia: 6, Atacante: 7 };
-  const nomes = Mundo.regrasGlobais.nomesRegens;
+  const nomes = clube.country_id === 44 && Mundo.regrasGlobais.nomesRegensEN
+    ? Mundo.regrasGlobais.nomesRegensEN
+    : Mundo.regrasGlobais.nomesRegens;
   const personalidades = ['Pragmatico', 'Pragmatico', 'Pragmatico', 'Ambicioso', 'Ambicioso', 'Leal', 'Leal', 'Filho_Prodigo'];
 
   for (const pos of Object.keys(alvo)) {

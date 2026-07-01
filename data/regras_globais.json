@@ -61,7 +61,12 @@
     { "clube_a": 103, "clube_b": 104, "intensidade": 65 },
     { "clube_a": 201, "clube_b": 203, "intensidade": 85 },
     { "clube_a": 201, "clube_b": 202, "intensidade": 70 },
-    { "clube_a": 202, "clube_b": 203, "intensidade": 90 }
+    { "clube_a": 202, "clube_b": 203, "intensidade": 90 },
+    { "clube_a": 302, "clube_b": 313, "intensidade": 92 },
+    { "clube_a": 309, "clube_b": 306, "intensidade": 90 },
+    { "clube_a": 304, "clube_b": 307, "intensidade": 88 },
+    { "clube_a": 305, "clube_b": 312, "intensidade": 80 },
+    { "clube_a": 303, "clube_b": 302, "intensidade": 75 }
   ],
   "coordenadasEstados": {
     "21": { "nome": "Rio de Janeiro", "lat": -22.9, "lon": -43.1 },
@@ -69,8 +74,24 @@
   },
   "torneiosIniciais": [
     { "nome": "Campeonato Paulista", "state_id": 25, "formato": "LIGA", "tier": "ESTADUAL", "tipoParticipante": "CLUBE", "minParticipantes": 2 },
-    { "nome": "Campeonato Carioca", "state_id": 21, "formato": "LIGA", "tier": "ESTADUAL", "tipoParticipante": "CLUBE", "minParticipantes": 2 }
+    { "nome": "Campeonato Carioca", "state_id": 21, "formato": "LIGA", "tier": "ESTADUAL", "tipoParticipante": "CLUBE", "minParticipantes": 2 },
+    { "nome": "Football League Division 1", "country_id": 44, "formato": "LIGA", "tier": "NACIONAL", "tipoParticipante": "CLUBE", "tipoCalendario": "CRUZADO", "semanaInicio": 33, "semanaFim": 22, "minParticipantes": 10 }
   ],
+  "nomesRegensEN": {
+    "masculinos": [
+      "William", "John", "Thomas", "Arthur", "Frederick", "George", "Harry", "Albert",
+      "Charles", "Edward", "James", "Ernest", "Robert", "Alfred", "Herbert", "Samuel",
+      "Joseph", "Walter", "Frank", "Harold", "Henry", "Percy", "Stanley", "Leonard",
+      "Norman", "Reginald", "Cyril", "Sidney", "Horace", "Clarence", "Bertram", "Wilfred"
+    ],
+    "sobrenomes": [
+      "Smith", "Jones", "Williams", "Brown", "Taylor", "Davies", "Evans", "Wilson",
+      "Thomas", "Roberts", "Johnson", "Walker", "Wright", "Robinson", "Thompson",
+      "White", "Jackson", "Harris", "Martin", "Wood", "Lewis", "Cooper", "Edwards",
+      "Green", "Hill", "Turner", "Moore", "Clarke", "Allen", "Hall", "Fletcher",
+      "Mills", "Pearson", "Barnes", "Booth", "Crompton", "Langton", "Sherwood"
+    ]
+  },
   "nomesRegens": {
     "masculinos": [
       "José", "João", "Antônio", "Francisco", "Pedro", "Manuel", "Luís", "Carlos",

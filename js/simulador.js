@@ -275,6 +275,14 @@ const Simulador = (() => {
         const resultado = calcularResultado(f.casaId, f.visitanteId);
         registrarResultado(torneio, f, resultado);
       });
+      if (torneio.tipoCalendario === 'CRUZADO' && !torneio.campeao) {
+        const pendentes = torneio.fixtures.filter(f => !f.resultado);
+        if (pendentes.length === 0 && torneio.classificacao.length > 0) {
+          torneio.campeao = torneio.classificacao[0].club_id;
+          const nCampeao = Mundo.clubes.get(torneio.campeao)?.nome || '?';
+          publicarNoticia('titulo', `Campeão do ${torneio.nome}: ${nCampeao}!`);
+        }
+      }
     });
   }
 
@@ -401,7 +409,7 @@ const Simulador = (() => {
         ? Mundo.cronologia.anoAtual > t.ano + 1
         : t.ano < Mundo.cronologia.anoAtual;
       if (!deveEncerrar) return;
-      if (t.classificacao.length > 0) {
+      if (t.classificacao.length > 0 && !t.campeao) {
         t.campeao = t.classificacao[0].club_id;
         const nCampeao = Mundo.clubes.get(t.campeao)?.nome || '?';
         publicarNoticia('titulo', `Campeão do ${t.nome}: ${nCampeao}!`);
