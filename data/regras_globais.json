@@ -14,7 +14,8 @@
       "idadeAposentadoria": 35,
       "crescimentoTorcida": 0.02,
       "fatorEscalaFinanceira": 0.001,
-      "xGBase": 1.5
+      "xGBase": 1.5,
+      "maxSubstituicoes": 0
     },
     {
       "nome": "ERA_PROFISSIONAL_INICIAL",
@@ -30,7 +31,8 @@
       "idadeAposentadoria": 36,
       "crescimentoTorcida": 0.04,
       "fatorEscalaFinanceira": 0.1,
-      "xGBase": 1.7
+      "xGBase": 1.7,
+      "maxSubstituicoes": 2
     },
     {
       "nome": "ERA_MODERNA",
@@ -46,7 +48,8 @@
       "idadeAposentadoria": 38,
       "crescimentoTorcida": 0.06,
       "fatorEscalaFinanceira": 1.0,
-      "xGBase": 1.6
+      "xGBase": 1.6,
+      "maxSubstituicoes": 3
     }
   ],
   "matrizRivalidade": [

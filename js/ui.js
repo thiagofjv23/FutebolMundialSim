@@ -521,12 +521,17 @@ const UI = (() => {
 
     const linhasJogadores = Object.entries(porPosicao).map(([pos, lista]) => {
       const sorted = lista.sort((a, b) => b.atributos[mapaAttr[pos]] - a.atributos[mapaAttr[pos]]);
-      return sorted.map(j => `<tr>
-        <td>${_escapeHtml(j.nome)}${j.tag_legado ? ` <span class="tag">[${_escapeHtml(j.tag_legado)}]</span>` : ''}</td>
-        <td>${j.posicao}</td><td>${j.idade}</td>
-        <td>${j.atributos.gol}/${j.atributos.defesa}/${j.atributos.armacao}/${j.atributos.ataque}</td>
-        <td>${j.personalidade}</td><td>${j.moral}</td>
-      </tr>`).join('');
+      return sorted.map(j => {
+        const cond = j.condicaoFisica ?? 100;
+        const corCond = cond >= 80 ? 'pos' : cond < 50 ? 'neg' : '';
+        return `<tr>
+          <td>${_escapeHtml(j.nome)}${j.tag_legado ? ` <span class="tag">[${_escapeHtml(j.tag_legado)}]</span>` : ''}</td>
+          <td>${j.posicao}</td><td>${j.idade}</td>
+          <td>${j.atributos.gol}/${j.atributos.defesa}/${j.atributos.armacao}/${j.atributos.ataque}</td>
+          <td>${j.personalidade}</td><td>${j.moral}</td>
+          <td class="${corCond}">${cond}%</td>
+        </tr>`;
+      }).join('');
     }).join('');
 
     // Jogos do clube (todos os torneios)
@@ -570,7 +575,7 @@ const UI = (() => {
           <span class="crono-badge">Prestígio ${clube.prestigio}</span>
           <span class="crono-badge">Finanças £${clube.financas}</span>
           <span class="crono-badge">Torcida ${(clube.torcida?.locais || 0).toLocaleString()}</span>
-          <span class="crono-badge">Técnico: ${_escapeHtml(clube.tecnico?.nome || '?')} (${_escapeHtml(clube.tecnico?.estiloTatico || '?')})</span>
+          <span class="crono-badge">Técnico: ${_escapeHtml(clube.tecnico?.nome || '?')} (${_escapeHtml(clube.tecnico?.estiloTatico || '?')}) · ${_escapeHtml(clube.tecnico?.formacao || '—')}</span>
           ${clube.stadium ? `<span class="crono-badge">${_escapeHtml(clube.stadium.nome)} · ${(clube.stadium.capacidade || 0).toLocaleString()}</span>` : ''}
         </div>
         <div class="clube-forca" style="margin-top:10px">
@@ -583,8 +588,8 @@ const UI = (() => {
           <div class="card-header">📋 Elenco (${jogadores.length})</div>
           <div style="overflow-x:auto">
             <table class="tabela-elenco">
-              <thead><tr><th>Jogador</th><th>Pos</th><th>Idade</th><th>G/D/A/T</th><th>Personalidade</th><th>Moral</th></tr></thead>
-              <tbody>${linhasJogadores || '<tr><td colspan="6" class="sem-dados">Sem jogadores.</td></tr>'}</tbody>
+              <thead><tr><th>Jogador</th><th>Pos</th><th>Idade</th><th>G/D/A/T</th><th>Personalidade</th><th>Moral</th><th>Cond</th></tr></thead>
+              <tbody>${linhasJogadores || '<tr><td colspan="7" class="sem-dados">Sem jogadores.</td></tr>'}</tbody>
             </table>
           </div>
         </div>

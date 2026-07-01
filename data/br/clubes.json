@@ -11,7 +11,8 @@
     "tecnico": {
       "coach_id": 301,
       "nome": "John Dutton",
-      "estiloTatico": "ofensivo"
+      "estiloTatico": "ofensivo",
+      "formacao": "3-2-5"
     },
     "stadium": {
       "stadium_id": 501,
@@ -33,7 +34,8 @@
     "tecnico": {
       "coach_id": 302,
       "nome": "Manoel Oliveira",
-      "estiloTatico": "equilibrado"
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
     },
     "stadium": {
       "stadium_id": 502,
@@ -55,7 +57,8 @@
     "tecnico": {
       "coach_id": 303,
       "nome": "Raimundo Pinheiro",
-      "estiloTatico": "equilibrado"
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
     },
     "stadium": {
       "stadium_id": 503,
@@ -77,7 +80,8 @@
     "tecnico": {
       "coach_id": 304,
       "nome": "Augusto Leite",
-      "estiloTatico": "defensivo"
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
     },
     "stadium": {
       "stadium_id": 504,
@@ -99,7 +103,8 @@
     "tecnico": {
       "coach_id": 305,
       "nome": "William Probert",
-      "estiloTatico": "equilibrado"
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
     },
     "stadium": {
       "stadium_id": 505,
@@ -121,7 +126,8 @@
     "tecnico": {
       "coach_id": 306,
       "nome": "Álvaro Chaves",
-      "estiloTatico": "ofensivo"
+      "estiloTatico": "ofensivo",
+      "formacao": "3-2-5"
     },
     "stadium": {
       "stadium_id": 506,
@@ -143,7 +149,8 @@
     "tecnico": {
       "coach_id": 307,
       "nome": "Custódio Araújo",
-      "estiloTatico": "defensivo"
+      "estiloTatico": "defensivo",
+      "formacao": "3-4-3"
     },
     "stadium": {
       "stadium_id": 507,
@@ -165,7 +172,8 @@
     "tecnico": {
       "coach_id": 401,
       "nome": "Jack Greenfield",
-      "estiloTatico": "ofensivo"
+      "estiloTatico": "ofensivo",
+      "formacao": "3-2-5"
     },
     "stadium": {
       "stadium_id": 601,
@@ -187,7 +195,8 @@
     "tecnico": {
       "coach_id": 402,
       "nome": "Giovanni Fabbri",
-      "estiloTatico": "ofensivo"
+      "estiloTatico": "ofensivo",
+      "formacao": "3-2-5"
     },
     "stadium": {
       "stadium_id": 602,
@@ -209,7 +218,8 @@
     "tecnico": {
       "coach_id": 403,
       "nome": "Carlos Rocha",
-      "estiloTatico": "equilibrado"
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
     },
     "stadium": {
       "stadium_id": 603,
@@ -231,7 +241,8 @@
     "tecnico": {
       "coach_id": 404,
       "nome": "Horácio Campos",
-      "estiloTatico": "defensivo"
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
     },
     "stadium": {
       "stadium_id": 604,
@@ -253,7 +264,8 @@
     "tecnico": {
       "coach_id": 405,
       "nome": "Joaquim Braga",
-      "estiloTatico": "equilibrado"
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
     },
     "stadium": {
       "stadium_id": 605,
@@ -275,7 +287,8 @@
     "tecnico": {
       "coach_id": 406,
       "nome": "Benedito Nunes",
-      "estiloTatico": "defensivo"
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
     },
     "stadium": {
       "stadium_id": 606,
@@ -297,7 +310,8 @@
     "tecnico": {
       "coach_id": 407,
       "nome": "Alfredo Mello",
-      "estiloTatico": "equilibrado"
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
     },
     "stadium": {
       "stadium_id": 607,

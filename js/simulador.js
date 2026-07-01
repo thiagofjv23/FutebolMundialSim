@@ -2,22 +2,102 @@
 
 const Simulador = (() => {
 
-  // ─── FORÇA DO TIME ──────────────────────────────────────────────────────────
+  // ─── FORMAÇÃO / CONDIÇÃO ────────────────────────────────────────────────────
 
-  function calcularForcaTime(clubeId) {
+  function _formacaoPadrao() {
+    const ano = Mundo.cronologia?.anoAtual || 1920;
+    if (ano < 1933) return '2-3-5';
+    if (ano < 1970) return '4-2-4';
+    return '4-3-3';
+  }
+
+  function _parsearFormacao(formacao) {
+    const f = formacao || _formacaoPadrao();
+    const partes = f.split('-').map(Number);
+    const [d, m, a] = partes;
+    return { Goleiro: 1, Zagueiro: d || 4, Meia: m || 3, Atacante: a || 3 };
+  }
+
+  function _ratingEfetivo(jogador, attr) {
+    const base = jogador.atributos[attr] || 0;
+    const cond = jogador.condicaoFisica ?? 100;
+    return base * (0.5 + 0.5 * cond / 100);
+  }
+
+  function _selecionarOnze(clubeId) {
+    const clube = Mundo.clubes.get(clubeId);
+    const slots = _parsearFormacao(clube?.tecnico?.formacao);
+    const attrPorPos = { Goleiro: 'gol', Zagueiro: 'defesa', Meia: 'armacao', Atacante: 'ataque' };
+
     const ids = Mundo.indiceElencos.get(clubeId);
     const squad = ids ? [...ids].map(id => Mundo.jogadores.get(id)).filter(Boolean) : [];
+
+    const porPos = { Goleiro: [], Zagueiro: [], Meia: [], Atacante: [] };
+    squad.forEach(j => { if (porPos[j.posicao]) porPos[j.posicao].push(j); });
+
+    const titulares = [];
+    for (const [pos, n] of Object.entries(slots)) {
+      const attr = attrPorPos[pos];
+      const sorted = [...porPos[pos]].sort((a, b) => _ratingEfetivo(b, attr) - _ratingEfetivo(a, attr));
+      titulares.push(...sorted.slice(0, n));
+    }
+    return titulares;
+  }
+
+  function _aplicarSubstituicoes(clubeId, titulares, maxSubs) {
+    if (maxSubs === 0) return { efetivos: titulares, subs: [] };
+
+    const attrPorPos = { Goleiro: 'gol', Zagueiro: 'defesa', Meia: 'armacao', Atacante: 'ataque' };
+    const ids = Mundo.indiceElencos.get(clubeId);
+    const squad = ids ? [...ids].map(id => Mundo.jogadores.get(id)).filter(Boolean) : [];
+    const titularIds = new Set(titulares.map(j => j.player_id));
+    const bench = squad.filter(j => !titularIds.has(j.player_id));
+
+    const efetivos = [...titulares];
+    const subs = [];
+    let subsUsadas = 0;
+
+    for (let i = 0; i < efetivos.length && subsUsadas < maxSubs; i++) {
+      const tit = efetivos[i];
+      if ((tit.condicaoFisica ?? 100) >= 50) continue;
+      const attr = attrPorPos[tit.posicao];
+      const candidatos = bench
+        .filter(j => j.posicao === tit.posicao)
+        .sort((a, b) => _ratingEfetivo(b, attr) - _ratingEfetivo(a, attr));
+      const sub = candidatos[0];
+      if (!sub || _ratingEfetivo(sub, attr) <= _ratingEfetivo(tit, attr)) continue;
+      efetivos[i] = sub;
+      subs.push({ saiu: tit, entrou: sub });
+      bench.splice(bench.indexOf(sub), 1);
+      subsUsadas++;
+    }
+    return { efetivos, subs };
+  }
+
+  function _calcularForcaOnze(titulares) {
     const por = { Goleiro: [], Zagueiro: [], Meia: [], Atacante: [] };
-    squad.forEach(j => { if (por[j.posicao]) por[j.posicao].push(j); });
-
-    const med = (arr, attr) => arr.length ? arr.reduce((s, j) => s + j.atributos[attr], 0) / arr.length : 40;
-
+    titulares.forEach(j => { if (por[j.posicao]) por[j.posicao].push(j); });
+    const med = (arr, attr) =>
+      arr.length ? arr.reduce((s, j) => s + _ratingEfetivo(j, attr), 0) / arr.length : 40;
     return {
       gol:     med(por.Goleiro,  'gol'),
       defesa:  med(por.Zagueiro, 'defesa'),
       armacao: med(por.Meia,     'armacao'),
       ataque:  med(por.Atacante, 'ataque'),
     };
+  }
+
+  // ─── FORÇA DO TIME (público — usado pela UI) ────────────────────────────────
+
+  function calcularForcaTime(clubeId) {
+    const titulares = _selecionarOnze(clubeId);
+    if (titulares.length === 0) {
+      // fallback para elenco completo se não há jogadores suficientes
+      const ids = Mundo.indiceElencos.get(clubeId);
+      const squad = ids ? [...ids].map(id => Mundo.jogadores.get(id)).filter(Boolean) : [];
+      return _calcularForcaOnze(squad);
+    }
+    return _calcularForcaOnze(titulares);
   }
 
   function aplicarMultiplicadorTatico(f, estilo) {
@@ -44,33 +124,51 @@ const Simulador = (() => {
     return Math.max(0, base * fator * 0.65);
   }
 
-  function determinarArtilheiros(clubeId, numGols) {
+  function determinarArtilheiros(titulares, numGols) {
     if (numGols === 0) return [];
-    const ids = Mundo.indiceElencos.get(clubeId);
-    const atacantes = ids
-      ? [...ids].map(id => Mundo.jogadores.get(id)).filter(j => j && (j.posicao === 'Atacante' || j.posicao === 'Meia'))
-      : [];
-    if (!atacantes.length) return [];
-
-    const totalAtk = atacantes.reduce((s, j) => s + j.atributos.ataque, 0);
+    const candidatos = titulares.filter(j => j.posicao === 'Atacante' || j.posicao === 'Meia');
+    if (!candidatos.length) return [];
+    const totalAtk = candidatos.reduce((s, j) => s + j.atributos.ataque, 0);
     const artilheiros = [];
-
     for (let g = 0; g < numGols; g++) {
       let r = Math.random() * totalAtk;
-      for (const j of atacantes) {
+      for (const j of candidatos) {
         r -= j.atributos.ataque;
-        if (r <= 0) { artilheiros.push({ player_id: j.player_id, nome: j.nome, club_id: clubeId }); break; }
+        if (r <= 0) { artilheiros.push({ player_id: j.player_id, nome: j.nome, club_id: j.club_id }); break; }
       }
     }
     return artilheiros;
   }
 
   function calcularResultado(casaId, visitanteId) {
-    const fCasa = calcularForcaTime(casaId);
-    const fVisit = calcularForcaTime(visitanteId);
+    const maxSubs = Mundo.eraAtual?.maxSubstituicoes ?? 0;
+
+    const titCasa  = _selecionarOnze(casaId);
+    const titVisit = _selecionarOnze(visitanteId);
+
+    const { efetivos: efCasa,  subs: subsCasa  } = _aplicarSubstituicoes(casaId,  titCasa,  maxSubs);
+    const { efetivos: efVisit, subs: subsVisit } = _aplicarSubstituicoes(visitanteId, titVisit, maxSubs);
+
+    const fCasa  = _calcularForcaOnze(efCasa);
+    const fVisit = _calcularForcaOnze(efVisit);
+
+    // Drain de condição física
+    const DRAIN_TITULAR = 20;
+    const DRAIN_SUB_SAI = 10;
+    const DRAIN_SUB_ENTRA = 10;
+    efCasa.forEach(j => { j.condicaoFisica = Math.max(0, (j.condicaoFisica ?? 100) - DRAIN_TITULAR); });
+    efVisit.forEach(j => { j.condicaoFisica = Math.max(0, (j.condicaoFisica ?? 100) - DRAIN_TITULAR); });
+    subsCasa.forEach(({ saiu, entrou }) => {
+      saiu.condicaoFisica   = Math.min(100, (saiu.condicaoFisica   ?? 100) + DRAIN_TITULAR - DRAIN_SUB_SAI);
+      entrou.condicaoFisica = Math.max(0,   (entrou.condicaoFisica ?? 100) - DRAIN_SUB_ENTRA);
+    });
+    subsVisit.forEach(({ saiu, entrou }) => {
+      saiu.condicaoFisica   = Math.min(100, (saiu.condicaoFisica   ?? 100) + DRAIN_TITULAR - DRAIN_SUB_SAI);
+      entrou.condicaoFisica = Math.max(0,   (entrou.condicaoFisica ?? 100) - DRAIN_SUB_ENTRA);
+    });
+
     const eCasa  = Mundo.clubes.get(casaId)?.tecnico?.estiloTatico  || 'equilibrado';
     const eVisit = Mundo.clubes.get(visitanteId)?.tecnico?.estiloTatico || 'equilibrado';
-
     const tCasa  = aplicarMultiplicadorTatico(fCasa,  eCasa);
     const tVisit = aplicarMultiplicadorTatico(fVisit, eVisit);
 
@@ -87,8 +185,8 @@ const Simulador = (() => {
       golsCasa,
       golsVisit,
       artilheiros: [
-        ...determinarArtilheiros(casaId,    golsCasa),
-        ...determinarArtilheiros(visitanteId, golsVisit),
+        ...determinarArtilheiros(efCasa,  golsCasa),
+        ...determinarArtilheiros(efVisit, golsVisit),
       ],
     };
   }

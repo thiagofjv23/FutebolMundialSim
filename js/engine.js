@@ -155,6 +155,7 @@ function ativarEntidadesParaAno(ano) {
     const clube = Mundo.clubes.get(jogador.club_id);
     if (!clube || !clube.ativo) return;
     jogador.ativo = true;
+    if (jogador.condicaoFisica === undefined) jogador.condicaoFisica = 100;
     indiceAdicionarJogador(jogador.club_id, jogador.player_id);
     normalizarAtributosLenda(jogador);
     publicarNoticia('estreia', `${jogador.nome} (${clube.nome}) entra em cena como ${jogador.posicao}!`);
@@ -207,6 +208,7 @@ function gerarRegensParaClube(clube) {
         tag_legado: null,
         personalidade: personalidades[rngInt(0, personalidades.length - 1)],
         moral: rngInt(65, 90),
+        condicaoFisica: 100,
         ativo: true,
         regen: true,
       };
@@ -303,6 +305,13 @@ async function passarProximoPasso() {
 
   ativarEntidadesParaAno(Mundo.cronologia.anoAtual);
   await dispararEventosDaSemana(Mundo.cronologia.anoAtual, Mundo.cronologia.semanaAtual);
+
+  // Recuperação física semanal (independente de jogar)
+  Mundo.jogadores.forEach(j => {
+    if (!j.ativo) return;
+    j.condicaoFisica = Math.min(100, (j.condicaoFisica ?? 100) + 12);
+  });
+
   Simulador.processarRodadasDaSemana();
 
   if (Mundo.cronologia.semanaAtual % 4 === 0) {
