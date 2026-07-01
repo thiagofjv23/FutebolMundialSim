@@ -104,6 +104,57 @@ async function inicializarMundo() {
   const saved = await DB.carregarEstado('mundo_atual');
   if (saved && saved.cronologia) {
     restaurarMundo(saved);
+
+    // Always reload regras_globais to pick up new configs (new tournaments, EN names, rivalries).
+    try {
+      const regras = await fetch('data/regras_globais.json').then(r => r.json());
+      Mundo.regrasGlobais = regras;
+    } catch (_) { /* keep saved regras on fetch failure */ }
+
+    // If the saved state pre-dates the EN database, inject EN clubs/players/tournament now.
+    const temEN = [...Mundo.clubes.values()].some(c => c.country_id === 44);
+    if (!temEN) {
+      try {
+        const [clubesEN, jogadoresEN] = await Promise.all([
+          fetch('data/en/clubes.json').then(r => r.json()),
+          fetch('data/en/jogadores.json').then(r => r.json()),
+        ]);
+        clubesEN.forEach(c => Mundo.clubes.set(c.club_id, { ...c, ativo: false }));
+        jogadoresEN.forEach(j => Mundo.jogadores.set(j.player_id, { ...j, ativo: false }));
+        ativarEntidadesParaAno(Mundo.cronologia.anoAtual);
+        Mundo.clubes.forEach(c => { if (c.ativo && c.country_id === 44) gerarRegensParaClube(c); });
+
+        // Create the English tournament for the current season without touching existing BR ones.
+        const temTorneioEN = [...Mundo.torneios.values()].some(t => t.country_id === 44);
+        if (!temTorneioEN) {
+          const cfgEN = (Mundo.regrasGlobais?.torneiosIniciais || []).find(c => c.country_id === 44);
+          if (cfgEN) {
+            const participantes = [...Mundo.clubes.values()]
+              .filter(c => c.ativo && c.country_id === 44)
+              .map(c => c.club_id);
+            if (participantes.length >= (cfgEN.minParticipantes || 10)) {
+              const ano = Mundo.cronologia.anoAtual;
+              Simulador.criarTorneio({
+                nome: `${cfgEN.nome} ${ano}/${String(ano + 1).slice(-2)}`,
+                nomeBase: cfgEN.nome,
+                formato: cfgEN.formato,
+                tier: cfgEN.tier,
+                tipoParticipante: cfgEN.tipoParticipante,
+                tipoCalendario: 'CRUZADO',
+                semanaInicio: cfgEN.semanaInicio ?? 33,
+                semanaFim: cfgEN.semanaFim ?? 22,
+                country_id: 44,
+                participantes,
+              });
+            }
+          }
+        }
+
+        publicarNoticia('sistema', 'Base de dados inglesa carregada — Football League Division 1 ativada!');
+        await DB.salvarEstado('mundo_atual', serializarMundo());
+      } catch (e) { console.warn('Falha ao carregar dados EN:', e); }
+    }
+
     publicarNoticia('sistema', `Estado restaurado — ${Mundo.cronologia.anoAtual}, Semana ${Mundo.cronologia.semanaAtual}`);
     return;
   }
