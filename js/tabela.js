@@ -49,18 +49,35 @@ const Tabela = (() => {
     const wrap = document.getElementById('tabelas-wrap');
     if (!wrap) return;
 
-    const torneiosAtivos = [...Mundo.torneios.values()].filter(t => t.ativo && t.ano === Mundo.cronologia.anoAtual);
+    const { anoAtual, semanaAtual } = Mundo.cronologia;
+
+    // After a year rolls over (week 1 of new year), keep the previous year's
+    // final standings visible until the first game week is simulated (semana > 1).
+    const anoAnterior = anoAtual - 1;
+    const torneiosFinais = [...Mundo.torneios.values()]
+      .filter(t => !t.ativo && t.ano === anoAnterior
+               && Array.isArray(t.classificacao) && t.classificacao.length)
+      .sort((a, b) => a.nome.localeCompare(b.nome));
+    const mostrarFinais = semanaAtual === 1 && torneiosFinais.length > 0;
+
+    const torneiosParaMostrar = mostrarFinais
+      ? torneiosFinais
+      : [...Mundo.torneios.values()].filter(t => t.ativo && t.ano === anoAtual);
 
     // Tabs
-    const tabsHtml = torneiosAtivos.map((t, i) =>
+    const tabsHtml = torneiosParaMostrar.map((t, i) =>
       `<button class="tab-btn${i === 0 ? ' ativo' : ''}" data-torneio-id-tab="${t.tournament_id}">${t.nome}</button>`
     ).join('');
 
-    wrap.innerHTML = `<div id="tabs-torneios" class="tabs">${tabsHtml}</div>
+    const banner = mostrarFinais
+      ? `<div style="padding:6px 12px 0;font-size:12px;color:var(--text-muted);text-align:center">🏆 Classificação Final — Temporada ${anoAnterior}</div>`
+      : '';
+
+    wrap.innerHTML = `${banner}<div id="tabs-torneios" class="tabs">${tabsHtml}</div>
       <div id="tabela-container"></div>
       <div style="padding:8px 12px 12px"><button class="btn-ghost" id="btn-ver-campeonato">Ver campeonato completo →</button></div>`;
 
-    let torneioSelecionado = torneiosAtivos[0] || null;
+    let torneioSelecionado = torneiosParaMostrar[0] || null;
     if (torneioSelecionado) {
       renderizarTabela(torneioSelecionado, document.getElementById('tabela-container'));
     }
