@@ -270,7 +270,7 @@ const Simulador = (() => {
   function processarRodadasDaSemana() {
     Mundo.torneios.forEach(torneio => {
       if (!torneio.ativo) return;
-      const fixtures = torneio.fixtures.filter(f => f.semana === Mundo.cronologia.semanaAtual && !f.resultado);
+      const fixtures = torneio.fixtures.filter(f => f.semana === Mundo.cronologia.semanaAtual && !f.resultado && (f.ano == null || f.ano === Mundo.cronologia.anoAtual));
       fixtures.forEach(f => {
         const resultado = calcularResultado(f.casaId, f.visitanteId);
         registrarResultado(torneio, f, resultado);
@@ -313,14 +313,14 @@ const Simulador = (() => {
     };
 
     if (torneio.formato === 'LIGA') {
-      torneio.fixtures = gerarFixturesLiga(participantes, torneio.semanaInicio, torneio.semanaFim);
+      torneio.fixtures = gerarFixturesLiga(participantes, torneio.semanaInicio, torneio.semanaFim, torneio.ano, torneio.tipoCalendario);
     }
 
     Mundo.torneios.set(id, torneio);
     return torneio;
   }
 
-  function gerarFixturesLiga(participantes, semanaInicio = 3, semanaFim = 51) {
+  function gerarFixturesLiga(participantes, semanaInicio = 3, semanaFim = 51, anoTorneio = null, tipoCalendario = 'MESMO_ANO') {
     const times = [...participantes];
     if (times.length % 2 !== 0) times.push(null); // bye
     const n = times.length;
@@ -340,8 +340,9 @@ const Simulador = (() => {
 
     const totalRodadas = rodadas.length;
     const semanas = [];
+    const cruzado = tipoCalendario === 'CRUZADO' && semanaFim < semanaInicio;
 
-    if (semanaFim >= semanaInicio) {
+    if (!cruzado) {
       // MESMO_ANO: distribui linearmente dentro do mesmo ano
       for (let i = 0; i < totalRodadas; i++) {
         semanas.push(Math.round(semanaInicio + (i * (semanaFim - semanaInicio) / Math.max(1, totalRodadas - 1))));
@@ -359,8 +360,14 @@ const Simulador = (() => {
     const fixtures = [];
     rodadas.forEach((rodada, idx) => {
       const semana = semanas[idx];
+      // CRUZADO: fixtures com semana < semanaInicio pertencem ao ano seguinte
+      const ano = cruzado && anoTorneio
+        ? (semana < semanaInicio ? anoTorneio + 1 : anoTorneio)
+        : null;
       rodada.forEach(({ casa, visit }) => {
-        fixtures.push({ semana, casaId: casa, visitanteId: visit, resultado: null });
+        const f = { semana, casaId: casa, visitanteId: visit, resultado: null };
+        if (ano !== null) f.ano = ano;
+        fixtures.push(f);
       });
     });
     return fixtures;
