@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "evento_id": "ev_en_001",
+    "ano": 1925,
+    "semana": 1,
+    "tipo": "REGRA_NOVA",
+    "titulo": "Regra do impedimento alterada: apenas 2 defensores necessários",
+    "descricao": "A IFAB modifica a regra do impedimento, reduzindo de três para dois o número de defensores exigidos entre o atacante e a meta. Surgida na Inglaterra, a mudança transforma o futebol mundial. As redes balançarão muito mais!",
+    "acao": { "tipo": "ALTERAR_FATOR_GLOBAL", "chave": "xGBase", "valor": 3.84 },
+    "exibicaoPopup": true
+  }
+]

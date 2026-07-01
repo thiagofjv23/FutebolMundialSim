@@ -36,7 +36,7 @@
     "tipo": "REGRA_NOVA",
     "titulo": "Nova regra do impedimento muda o futebol mundial",
     "descricao": "A IFAB aprova mudança na regra do impedimento: agora são necessários apenas dois defensores (ao invés de três) entre o atacante e a meta. O futebol ofensivo ganhará novo impulso — as redes vão balançar mais!",
-    "acao": { "tipo": "ALTERAR_FATOR_GLOBAL", "chave": "xGBase", "valor": 2.0 },
+    "acao": { "tipo": "ALTERAR_FATOR_GLOBAL", "chave": "xGBase", "valor": 3.84 },
     "exibicaoPopup": true
   },
   {

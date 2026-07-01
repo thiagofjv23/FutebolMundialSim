@@ -128,7 +128,7 @@ const Simulador = (() => {
   }
 
   function calcularXG(ataqNorm, defNorm, fatorPartida = 1.0) {
-    const base = (Mundo.eraAtual?.xGBase || 1.5) * Math.pow(ataqNorm / Math.max(0.1, defNorm), 0.75);
+    const base = (Mundo.eraAtual?.xGBase || 1.5) * Math.pow(ataqNorm / Math.max(0.1, defNorm), 0.55);
     const stdev = (Mundo.eraAtual?.fatorCaos || 0.35) / 2.0;
     const fatorTime = Math.max(0.2, randomNormal(1.0, stdev));
     return Math.max(0, base * fatorTime * fatorPartida * 0.65);
