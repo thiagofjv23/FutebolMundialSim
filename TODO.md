@@ -23,3 +23,21 @@ O expoente de prestígio foi alterado de `0.75 → 0.55` e o `xGBase` da ERA_AMA
 - Football League 1925/26 (pós-regra nova): **~6.09 g/j**
 - Football League ~1930 (defesas adaptadas, formação WM): **~4.5–5.0 g/j**
 - Futebol moderno médio (Bundesliga, La Liga, Premier League): **~2.7–3.1 g/j**
+
+## Pendências adiadas (itens deixados para depois)
+
+Itens de escopo/cosmética que foram conscientemente adiados durante implementações anteriores, registrados aqui para não serem esquecidos.
+
+### Sistema de divisões (acesso/descenso)
+
+- [ ] `js/tabela.js`: a zona de promoção usa `numPromovidos > 1` — funciona para a Segunda Divisão Carioca (3 promovidos), mas uma liga com apenas 1 promovido não pintaria a zona verde. Revisar se/quando existir liga com 1 vaga de acesso.
+
+### Grandeza histórica / regens
+
+- [ ] Exibir `grandezaHistorica` na tela de detalhe do clube (o sistema hoje não tem UI para esse campo).
+- [ ] Ajustar atributos **secundários** dos regens por clube — hoje só o atributo primário da posição escala com prestígio/grandeza; os secundários continuam aleatórios baixos.
+- [ ] Reavaliar o balanceamento 50/50 (grandeza × prestígio) e a taxa de reversão à média (0.10) após observar simulações longas; aumentar o peso da grandeza se o destino histórico não estiver se impondo o suficiente.
+
+### Persistência / modo de teste
+
+- [ ] Desligar `MODO_TESTE` (`js/engine.js`) quando a fase de testes terminar, reativando o save de `mundo_atual`. Antes disso, investigar e corrigir a causa dos bugs de restore de save que motivaram o modo de teste.
