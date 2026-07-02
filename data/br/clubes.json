@@ -7,7 +7,7 @@
     "state_id": 21,
     "divisao": 1,
     "anoFundacao": 1902,
-    "prestigio": 75,
+    "prestigio": 70,
     "grandezaHistorica": 82,
     "financas": 1200,
     "tecnico": {
@@ -36,7 +36,7 @@
     "state_id": 21,
     "divisao": 1,
     "anoFundacao": 1911,
-    "prestigio": 62,
+    "prestigio": 78,
     "grandezaHistorica": 95,
     "financas": 900,
     "tecnico": {
@@ -94,7 +94,7 @@
     "state_id": 21,
     "divisao": 1,
     "anoFundacao": 1904,
-    "prestigio": 60,
+    "prestigio": 63,
     "grandezaHistorica": 55,
     "financas": 700,
     "tecnico": {
@@ -123,7 +123,7 @@
     "state_id": 21,
     "divisao": 1,
     "anoFundacao": 1904,
-    "prestigio": 42,
+    "prestigio": 46,
     "grandezaHistorica": 45,
     "financas": 350,
     "tecnico": {
@@ -152,7 +152,7 @@
     "state_id": 21,
     "divisao": 1,
     "anoFundacao": 1904,
-    "prestigio": 65,
+    "prestigio": 66,
     "grandezaHistorica": 82,
     "financas": 850,
     "tecnico": {
@@ -181,7 +181,7 @@
     "state_id": 21,
     "divisao": 1,
     "anoFundacao": 1898,
-    "prestigio": 40,
+    "prestigio": 44,
     "grandezaHistorica": 38,
     "financas": 300,
     "tecnico": {
@@ -210,7 +210,7 @@
     "state_id": 21,
     "divisao": 1,
     "anoFundacao": 1909,
-    "prestigio": 40,
+    "prestigio": 48,
     "grandezaHistorica": 25,
     "financas": 300,
     "tecnico": {
@@ -239,7 +239,7 @@
     "state_id": 21,
     "divisao": 1,
     "anoFundacao": 1912,
-    "prestigio": 35,
+    "prestigio": 34,
     "grandezaHistorica": 22,
     "financas": 250,
     "tecnico": {
@@ -268,7 +268,7 @@
     "state_id": 21,
     "divisao": 1,
     "anoFundacao": 1910,
-    "prestigio": 30,
+    "prestigio": 28,
     "grandezaHistorica": 20,
     "financas": 220,
     "tecnico": {
@@ -297,7 +297,7 @@
     "state_id": 21,
     "divisao": 1,
     "anoFundacao": 1906,
-    "prestigio": 30,
+    "prestigio": 26,
     "grandezaHistorica": 22,
     "financas": 200,
     "tecnico": {

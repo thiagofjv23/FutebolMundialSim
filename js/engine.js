@@ -2,7 +2,7 @@
 
 // Incrementar quando mudanças estruturais no save state exigirem reinício automático.
 // Saves com versão diferente são descartados e o jogo começa do zero.
-const DATA_VERSION = 5;
+const DATA_VERSION = 6;
 
 // Época de testes: quando true, o estado do mundo não é salvo nem restaurado.
 // Cada reload recomeça do zero em 1920. Colocar em false para reativar a persistência.
@@ -264,7 +264,7 @@ function gerarRegensParaClube(clube) {
       const idade = rngInt(18, 30);
       const grandeza = clube.grandezaHistorica ?? clube.prestigio ?? 50;
       const metrica = (clube.prestigio ?? 50) * 0.5 + grandeza * 0.5;
-      const media = 31 + metrica * 0.37;
+      const media = 24 + metrica * 0.46;
       const base = Math.min(85, Math.max(25, rngNormal(media, 12)));
 
       const atributos = {

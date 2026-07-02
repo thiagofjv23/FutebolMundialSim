@@ -41,3 +41,12 @@ Itens de escopo/cosmética que foram conscientemente adiados durante implementa�
 ### Persistência / modo de teste
 
 - [ ] Desligar `MODO_TESTE` (`js/engine.js`) quando a fase de testes terminar, reativando o save de `mundo_atual`. Antes disso, investigar e corrigir a causa dos bugs de restore de save que motivaram o modo de teste.
+
+### Realismo do 1º ano (extensão do trabalho do Carioca 1920)
+
+O Carioca div1 foi calibrado (ρ 0.42→0.59; Flamengo 10%→33%, co-favorito com o Fluminense; g/j ~3.4). Aplicar a mesma técnica às outras ligas:
+
+- [ ] **Paulista 1920**: realinhar `prestigio` ao pecking order real (campeão de 1920 foi o **Palestra Italia**, não o Paulistano, que hoje tem prestígio 82) e ancorar com jogadores reais (Friedenreich já existe no Paulistano).
+- [ ] **Football League (EN)**: realinhar prestígio de 1920/21 (Burnley foi campeão — já tem prestígio 85, ok) e avaliar ligar `returno` para a liga inglesa (hoje roda turno único; alinhar com o calendário CRUZADO — returno dobraria para ~42 rodadas).
+- [ ] Rever se `grandezaHistorica` e `prestigio` das outras eras/clubes precisam de ajuste após o alargamento do spread dos regens (μ = 24 + 0.46·métrica).
+- [ ] Reconsiderar o expoente 0.55 apenas com um benchmark cruzado de g/j (ligado ao item de calibração de xGBase acima).

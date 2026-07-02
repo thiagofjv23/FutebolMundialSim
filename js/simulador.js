@@ -320,6 +320,7 @@ const Simulador = (() => {
       divisao: config.divisao ?? null,
       numRebaixados: config.numRebaixados ?? 0,
       numPromovidos: config.numPromovidos ?? 0,
+      returno: config.returno ?? false,
       ativo: true,
       participantes,
       fixtures: [],
@@ -328,14 +329,14 @@ const Simulador = (() => {
     };
 
     if (torneio.formato === 'LIGA') {
-      torneio.fixtures = gerarFixturesLiga(participantes, torneio.semanaInicio, torneio.semanaFim, torneio.ano, torneio.tipoCalendario);
+      torneio.fixtures = gerarFixturesLiga(participantes, torneio.semanaInicio, torneio.semanaFim, torneio.ano, torneio.tipoCalendario, torneio.returno);
     }
 
     Mundo.torneios.set(id, torneio);
     return torneio;
   }
 
-  function gerarFixturesLiga(participantes, semanaInicio = 3, semanaFim = 51, anoTorneio = null, tipoCalendario = 'MESMO_ANO') {
+  function gerarFixturesLiga(participantes, semanaInicio = 3, semanaFim = 51, anoTorneio = null, tipoCalendario = 'MESMO_ANO', returno = false) {
     const times = [...participantes];
     if (times.length % 2 !== 0) times.push(null); // bye
     const n = times.length;
@@ -351,6 +352,12 @@ const Simulador = (() => {
       rodadas.push(rodada);
       // Rotacionar mantendo o primeiro fixo
       times.splice(1, 0, times.pop());
+    }
+
+    // Returno: espelhar as rodadas do turno com o mando de campo invertido.
+    if (returno) {
+      const returnoRodadas = rodadas.map(rodada => rodada.map(({ casa, visit }) => ({ casa: visit, visit: casa })));
+      rodadas.push(...returnoRodadas);
     }
 
     const totalRodadas = rodadas.length;
@@ -439,6 +446,7 @@ const Simulador = (() => {
         divisao: cfg.divisao ?? null,
         numRebaixados: cfg.numRebaixados ?? 0,
         numPromovidos: cfg.numPromovidos ?? 0,
+        returno: cfg.returno ?? false,
         participantes,
       });
     });
