@@ -1,14 +1,16 @@
 'use strict';
 
 const UI = (() => {
+  const BUILD = '20260709';
   let _vetoPendente = null;
+  let _buscaMapa = new Map();
 
   // ─── ROTEADOR DE TELAS ──────────────────────────────────────────────────────
 
   let _telaAtual = { view: 'inicio', params: {} };
   let _historico = [];
 
-  const _TELAS = { inicio: 'tela-inicio', campeonato: 'tela-campeonato', time: 'tela-time', historia: 'tela-historia' };
+  const _TELAS = { inicio: 'tela-inicio', campeonato: 'tela-campeonato', time: 'tela-time', historia: 'tela-historia', nacao: 'tela-nacao', estado: 'tela-estado' };
 
   function _mostrarTela(view) {
     document.querySelectorAll('.tela').forEach(s => s.classList.remove('ativa'));
@@ -19,12 +21,16 @@ const UI = (() => {
     if (view === 'campeonato')      Tabela.renderizarTelaCampeonato(params.torneioId);
     else if (view === 'time')       renderizarTelaTime(params.clubeId);
     else if (view === 'historia')   Historia.renderizarTelaHistoria();
+    else if (view === 'nacao')      renderizarTelaNacao(params.countryId);
+    else if (view === 'estado')     renderizarTelaEstado(params.stateId);
     else                            atualizarTodosOsPaineis();
   }
 
   function navegarPara(view, params = {}) {
     if (view === 'campeonato' && !params.torneioId) return;
     if (view === 'time' && !params.clubeId) return;
+    if (view === 'estado' && params.stateId == null) return;
+    if (view === 'nacao' && params.countryId == null) return;
     _historico.push(_telaAtual);
     _telaAtual = { view, params };
     _mostrarTela(view);
@@ -70,6 +76,18 @@ const UI = (() => {
   function linkTorneio(torneioId) {
     const t = Mundo.torneios.get(torneioId);
     return `<a class="link-nav" data-torneio-id="${torneioId}">${_escapeHtml(t?.nome || `Torneio ${torneioId}`)}</a>`;
+  }
+  function _nomeEstado(stateId) {
+    return Mundo.regrasGlobais?.coordenadasEstados?.[stateId]?.nome || `Estado ${stateId}`;
+  }
+  function _nomeNacao(countryId) {
+    return countryId === 44 ? 'Inglaterra' : countryId === 55 ? 'Brasil' : `Nação ${countryId}`;
+  }
+  function linkEstado(stateId) {
+    return `<a class="link-nav" data-state-id="${stateId}">${_escapeHtml(_nomeEstado(stateId))}</a>`;
+  }
+  function linkNacao(countryId) {
+    return `<a class="link-nav" data-country-id="${countryId}">${_escapeHtml(_nomeNacao(countryId))}</a>`;
   }
 
   // Índice de nomes (clubes + torneios) para linkar texto livre. Recriado quando muda a contagem.
@@ -118,6 +136,8 @@ const UI = (() => {
     await DB.abrirBanco();
     await inicializarMundo();
     _bindEventos();
+    const stamp = document.getElementById('build-stamp');
+    if (stamp) stamp.textContent = `build ${BUILD} · v${typeof DATA_VERSION !== 'undefined' ? DATA_VERSION : '?'}`;
     atualizarTodosOsPaineis();
   }
 
@@ -144,8 +164,19 @@ const UI = (() => {
 
     // Navegação
     document.getElementById('nav-inicio')?.addEventListener('click', irParaInicio);
+    document.getElementById('nav-explorar')?.addEventListener('click', () => navegarPara('nacao', { countryId: 55 }));
     document.getElementById('nav-historia')?.addEventListener('click', () => navegarPara('historia'));
     document.getElementById('nav-voltar')?.addEventListener('click', voltar);
+
+    // Busca global (clube ou torneio) via datalist
+    const buscaInput = document.getElementById('nav-busca-input');
+    buscaInput?.addEventListener('change', () => {
+      const alvo = _buscaMapa.get(buscaInput.value.trim());
+      if (!alvo) return;
+      if (alvo.tipo === 'clube') navegarPara('time', { clubeId: alvo.id });
+      else navegarPara('campeonato', { torneioId: alvo.id });
+      buscaInput.value = '';
+    });
     document.getElementById('nav-sel-campeonato')?.addEventListener('change', (e) => {
       const id = +e.target.value;
       if (id) navegarPara('campeonato', { torneioId: id });
@@ -162,10 +193,12 @@ const UI = (() => {
       // Fecha o menu de avanço de tempo ao clicar fora dele
       if (!e.target.closest('#tempo-wrap')) _fecharMenuTempo();
 
-      const a = e.target.closest('[data-club-id], [data-torneio-id]');
+      const a = e.target.closest('[data-club-id], [data-torneio-id], [data-state-id], [data-country-id]');
       if (!a) return;
-      if (a.dataset.clubId)        { e.preventDefault(); navegarPara('time', { clubeId: +a.dataset.clubId }); }
+      if (a.dataset.clubId)         { e.preventDefault(); navegarPara('time', { clubeId: +a.dataset.clubId }); }
       else if (a.dataset.torneioId) { e.preventDefault(); navegarPara('campeonato', { torneioId: +a.dataset.torneioId }); }
+      else if (a.dataset.stateId)   { e.preventDefault(); navegarPara('estado', { stateId: +a.dataset.stateId }); }
+      else if (a.dataset.countryId) { e.preventDefault(); navegarPara('nacao', { countryId: +a.dataset.countryId }); }
     });
 
     // Reset salvo (header + painel)
@@ -230,21 +263,31 @@ const UI = (() => {
     if (_telaAtual.view === 'campeonato')    Tabela.renderizarTelaCampeonato(_telaAtual.params.torneioId);
     else if (_telaAtual.view === 'time')     renderizarTelaTime(_telaAtual.params.clubeId);
     else if (_telaAtual.view === 'historia') Historia.renderizarTelaHistoria();
+    else if (_telaAtual.view === 'nacao')    renderizarTelaNacao(_telaAtual.params.countryId);
+    else if (_telaAtual.view === 'estado')   renderizarTelaEstado(_telaAtual.params.stateId);
   }
 
   function atualizarNavSelects() {
+    const torneios = [...Mundo.torneios.values()].sort((a, b) => (b.ano - a.ano) || a.nome.localeCompare(b.nome));
+    const clubes = [...Mundo.clubes.values()].filter(c => c.ativo).sort((a, b) => a.nome.localeCompare(b.nome));
+
     const selT = document.getElementById('nav-sel-campeonato');
     if (selT) {
-      const torneios = [...Mundo.torneios.values()].sort((a, b) => (b.ano - a.ano) || a.nome.localeCompare(b.nome));
       selT.innerHTML = '<option value="">—</option>' +
         torneios.map(t => `<option value="${t.tournament_id}">${t.nome}</option>`).join('');
     }
     const selC = document.getElementById('nav-sel-time');
     if (selC) {
-      const clubes = [...Mundo.clubes.values()].filter(c => c.ativo).sort((a, b) => a.nome.localeCompare(b.nome));
       selC.innerHTML = '<option value="">—</option>' +
         clubes.map(c => `<option value="${c.club_id}">${c.nome}</option>`).join('');
     }
+
+    // Índice de busca (datalist): clubes + torneios por nome.
+    _buscaMapa = new Map();
+    clubes.forEach(c => _buscaMapa.set(c.nome, { tipo: 'clube', id: c.club_id }));
+    torneios.forEach(t => _buscaMapa.set(t.nome, { tipo: 'torneio', id: t.tournament_id }));
+    const dl = document.getElementById('nav-busca-lista');
+    if (dl) dl.innerHTML = [..._buscaMapa.keys()].map(n => `<option value="${_escapeHtml(n)}"></option>`).join('');
   }
 
   function atualizarCabecalho() {
@@ -504,6 +547,74 @@ const UI = (() => {
 
   // ─── TELA DE TIME ────────────────────────────────────────────────────────────
 
+  // ─── TELAS-ÍNDICE: NAÇÃO / ESTADO ───────────────────────────────────────────
+
+  function renderizarTelaNacao(countryId) {
+    const el = document.getElementById('nacao-conteudo');
+    if (!el) return;
+    const ano = Mundo.cronologia.anoAtual;
+    const clubes = [...Mundo.clubes.values()].filter(c => c.country_id === countryId);
+
+    const estadosMap = new Map();
+    clubes.forEach(c => {
+      if (c.state_id == null) return;
+      if (!estadosMap.has(c.state_id)) estadosMap.set(c.state_id, { total: 0, ativos: 0 });
+      const s = estadosMap.get(c.state_id);
+      s.total++; if (c.ativo) s.ativos++;
+    });
+    const estados = [...estadosMap.entries()].sort((a, b) => _nomeEstado(a[0]).localeCompare(_nomeEstado(b[0])));
+    const ligasNacionais = [...Mundo.torneios.values()].filter(t => t.country_id === countryId && t.ativo);
+
+    const cardEstado = ([sid, s]) => `<div class="idx-item">
+      <div class="idx-nome">${linkEstado(sid)}</div>
+      <div class="idx-sub">${s.ativos} clube(s) ativo(s)${s.total !== s.ativos ? ` · ${s.total} no total` : ''}</div>
+    </div>`;
+
+    el.innerHTML = `
+      <div class="entidade-header">
+        <h2>${_escapeHtml(_nomeNacao(countryId))}</h2>
+        <div class="sub">Nações: ${linkNacao(55)} · ${linkNacao(44)}</div>
+        <div class="badges"><span class="crono-badge">${clubes.filter(c => c.ativo).length} clubes ativos em ${ano}</span></div>
+      </div>
+      ${estados.length ? `<div class="card"><div class="card-header">🗺️ Estados</div><div class="idx-grid">${estados.map(cardEstado).join('')}</div></div>` : ''}
+      ${ligasNacionais.length ? `<div class="card" style="margin-top:12px"><div class="card-header">🏆 Ligas nacionais</div><div class="card-body">${ligasNacionais.map(t => `<div class="jogo-linha">${linkTorneio(t.tournament_id)}</div>`).join('')}</div></div>` : ''}`;
+  }
+
+  function renderizarTelaEstado(stateId) {
+    const el = document.getElementById('estado-conteudo');
+    if (!el) return;
+    const ano = Mundo.cronologia.anoAtual;
+    const ativos = [...Mundo.clubes.values()].filter(c => c.state_id === stateId && c.ativo);
+    const torneios = [...Mundo.torneios.values()].filter(t => t.state_id === stateId && t.ativo);
+
+    const porDiv = new Map();
+    ativos.forEach(c => {
+      const d = c.divisao ?? 1;
+      if (!porDiv.has(d)) porDiv.set(d, []);
+      porDiv.get(d).push(c);
+    });
+    const divisoes = [...porDiv.keys()].sort((a, b) => a - b);
+
+    const blocoDiv = (d) => {
+      const lista = porDiv.get(d).sort((a, b) => b.prestigio - a.prestigio);
+      const torneioDiv = torneios.find(t => (t.divisao ?? 1) === d);
+      return `<div class="card" style="margin-top:12px">
+        <div class="card-header">${d}ª Divisão${torneioDiv ? ' — ' + linkTorneio(torneioDiv.tournament_id) : ''}</div>
+        <div class="idx-grid">${lista.map(c => `<div class="idx-item">
+          <div class="idx-nome">${linkClube(c.club_id)}</div>
+          <div class="idx-sub">Prestígio ${c.prestigio} · fund. ${c.anoFundacao}</div>
+        </div>`).join('')}</div>
+      </div>`;
+    };
+
+    el.innerHTML = `
+      <div class="entidade-header">
+        <h2>${_escapeHtml(_nomeEstado(stateId))}</h2>
+        <div class="sub">${linkNacao(55)} · ${ativos.length} clube(s) ativo(s) em ${ano}</div>
+      </div>
+      ${divisoes.length ? divisoes.map(blocoDiv).join('') : '<p class="sem-dados">Nenhum clube ativo neste estado.</p>'}`;
+  }
+
   function renderizarTelaTime(clubeId) {
     const el = document.getElementById('time-conteudo');
     if (!el) return;
@@ -640,7 +751,7 @@ const UI = (() => {
     inicializarUI, atualizarTodosOsPaineis, setBotoesTempoAtivos,
     mostrarPopupHistorico, mostrarDetalheClube, mostrarCardVeto, mostrarToast,
     navegarPara, voltar, irParaInicio,
-    linkClube, linkTorneio, linkificarTexto,
+    linkClube, linkTorneio, linkEstado, linkNacao, linkificarTexto,
     renderizarTelaTime,
   };
 })();

@@ -312,6 +312,20 @@ input, select { font-family: inherit; font-size: 13px; }
 .btn-reset { margin-top: 16px; width: 100%; background: transparent; border: 1px solid var(--red); color: var(--red); border-radius: var(--radius); padding: 7px; font-size: 12px; }
 .btn-reset:hover { background: rgba(248,81,73,.1); }
 
+/* ─── NAVEGAÇÃO: BUSCA + TELAS-ÍNDICE ─────────────────────────────────────────── */
+.nav-busca { flex: 1 1 180px; min-width: 140px; }
+.nav-busca input {
+  width: 100%; background: var(--bg2); color: var(--text);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 6px 10px; font-size: 13px; font-family: var(--font);
+}
+#build-stamp { font-size: 11px; color: var(--text-muted); }
+
+.idx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; padding: 12px; }
+.idx-item { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 12px; }
+.idx-nome { font-weight: 600; }
+.idx-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
 /* ─── TABELAS ───────────────────────────────────────────────────────────────── */
 .tabs { display: flex; flex-wrap: wrap; gap: 4px; row-gap: 2px; padding: 8px 12px 0; border-bottom: 1px solid var(--border); }
 
