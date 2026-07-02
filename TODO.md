@@ -55,3 +55,14 @@ O Carioca div1 foi calibrado (ρ 0.42→0.59; Flamengo 10%→33%, co-favorito co
 
 - [ ] Adicionar um modo "update" ao gerador para **editar clubes já existentes** a partir da tabela (`tools/clubes_novos.json`). Hoje ele é add-only (idempotente por nome), então ajustes em clubes existentes (ex.: mudar divisão/prestígio) são feitos direto no JSON, o que gera risco de divergência entre a tabela-fonte e `data/br/clubes.json`.
 - [ ] Estender a expansão a mais estados (Pernambuco, Bahia, Paraná) e realinhar o favorito de 1920 do Paulista (campeão real foi o Palestra Itália, não o Paulistano) — ver seção de realismo acima.
+
+### Reestruturação da UI (ver docs/GUIA_UI.md)
+
+Roadmap faseado do guia de estruturação estilo Championship Manager 01/02:
+
+- [ ] **Fase 1** — Navegação hierárquica (Nação → Estado → Divisão → Clube → Jogador) + campo de busca global, substituindo os dropdowns planos (`atualizarNavSelects`).
+- [ ] **Fase 2** — Tela de Jogador (`linkJogador` + `data-player-id` + `renderizarTelaJogador`): atributos com barra, bio, carreira. Hoje jogadores não são clicáveis.
+- [ ] **Fase 3** — Tela de Estado/Região (agrega divisões, clubes ativos e campeões por `state_id`).
+- [ ] **Fase 4** — Reorganizar a tela de Clube (`renderizarTelaTime`) em abas: Visão geral · Elenco · Jogos · Histórico.
+- [ ] **Fase 5** — Enriquecer a tela de Competição: artilheiros, faixas de acesso/rebaixamento, link ao estado, histórico de campeões.
+- [ ] Considerar mesclar a branch em `main` e apontar o GitHub Pages para `main` (deploys estáveis, em vez de publicar a branch de feature).
