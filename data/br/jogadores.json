@@ -286,5 +286,95 @@
     "tag_legado": null,
     "personalidade": "Leal",
     "moral": 84
+  },
+  {
+    "player_id": 1017,
+    "nome": "Jatobá",
+    "idade": 26,
+    "anoEstreia": 1915,
+    "posicao": "Atacante",
+    "atributos": {
+      "gol": 6,
+      "defesa": 8,
+      "armacao": 55,
+      "ataque": 88
+    },
+    "club_id": 1011,
+    "clubeIdentidadeId": 1011,
+    "tag_legado": null,
+    "personalidade": "Leal",
+    "moral": 84
+  },
+  {
+    "player_id": 1018,
+    "nome": "Nininho",
+    "idade": 24,
+    "anoEstreia": 1917,
+    "posicao": "Atacante",
+    "atributos": {
+      "gol": 6,
+      "defesa": 8,
+      "armacao": 50,
+      "ataque": 83
+    },
+    "club_id": 1011,
+    "clubeIdentidadeId": 1011,
+    "tag_legado": null,
+    "personalidade": "Leal",
+    "moral": 84
+  },
+  {
+    "player_id": 1019,
+    "nome": "Dario Campos",
+    "idade": 27,
+    "anoEstreia": 1915,
+    "posicao": "Meia",
+    "atributos": {
+      "gol": 8,
+      "defesa": 24,
+      "armacao": 82,
+      "ataque": 52
+    },
+    "club_id": 1011,
+    "clubeIdentidadeId": 1011,
+    "tag_legado": null,
+    "personalidade": "Leal",
+    "moral": 84
+  },
+  {
+    "player_id": 1020,
+    "nome": "Osório Lima",
+    "idade": 28,
+    "anoEstreia": 1914,
+    "posicao": "Zagueiro",
+    "atributos": {
+      "gol": 10,
+      "defesa": 80,
+      "armacao": 30,
+      "ataque": 12
+    },
+    "club_id": 1011,
+    "clubeIdentidadeId": 1011,
+    "tag_legado": null,
+    "personalidade": "Leal",
+    "moral": 84
+  },
+  {
+    "player_id": 1021,
+    "nome": "Bento Ferreira",
+    "idade": 25,
+    "anoEstreia": 1916,
+    "posicao": "Goleiro",
+    "atributos": {
+      "gol": 80,
+      "defesa": 20,
+      "armacao": 10,
+      "ataque": 5
+    },
+    "club_id": 1011,
+    "clubeIdentidadeId": 1011,
+    "tag_legado": null,
+    "personalidade": "Leal",
+    "moral": 84
   }
 ]

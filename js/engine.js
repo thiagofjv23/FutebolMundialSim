@@ -2,7 +2,7 @@
 
 // Incrementar quando mudanças estruturais no save state exigirem reinício automático.
 // Saves com versão diferente são descartados e o jogo começa do zero.
-const DATA_VERSION = 7;
+const DATA_VERSION = 8;
 
 // Época de testes: quando true, o estado do mundo não é salvo nem restaurado.
 // Cada reload recomeça do zero em 1920. Colocar em false para reativar a persistência.
@@ -122,7 +122,7 @@ async function inicializarMundo() {
 
     // Always reload regras_globais to pick up new configs (new tournaments, EN names, rivalries).
     try {
-      const regras = await fetch('data/regras_globais.json').then(r => r.json());
+      const regras = await fetch('data/regras_globais.json', { cache: 'no-cache' }).then(r => r.json());
       Mundo.regrasGlobais = regras;
     } catch (_) { /* keep saved regras on fetch failure */ }
 
@@ -131,8 +131,8 @@ async function inicializarMundo() {
     if (!temEN) {
       try {
         const [clubesEN, jogadoresEN] = await Promise.all([
-          fetch('data/en/clubes.json').then(r => r.json()),
-          fetch('data/en/jogadores.json').then(r => r.json()),
+          fetch('data/en/clubes.json', { cache: 'no-cache' }).then(r => r.json()),
+          fetch('data/en/jogadores.json', { cache: 'no-cache' }).then(r => r.json()),
         ]);
         clubesEN.forEach(c => Mundo.clubes.set(c.club_id, { ...c, ativo: false }));
         jogadoresEN.forEach(j => Mundo.jogadores.set(j.player_id, { ...j, ativo: false }));
@@ -175,13 +175,13 @@ async function inicializarMundo() {
   }
 
   const [regras, clubesBR, jogadoresBR, eventosBR, clubesEN, jogadoresEN, eventosEN] = await Promise.all([
-    fetch('data/regras_globais.json').then(r => r.json()),
-    fetch('data/br/clubes.json').then(r => r.json()),
-    fetch('data/br/jogadores.json').then(r => r.json()),
-    fetch('data/br/eventos.json').then(r => r.json()),
-    fetch('data/en/clubes.json').then(r => r.json()),
-    fetch('data/en/jogadores.json').then(r => r.json()),
-    fetch('data/en/eventos.json').then(r => r.json()),
+    fetch('data/regras_globais.json', { cache: 'no-cache' }).then(r => r.json()),
+    fetch('data/br/clubes.json', { cache: 'no-cache' }).then(r => r.json()),
+    fetch('data/br/jogadores.json', { cache: 'no-cache' }).then(r => r.json()),
+    fetch('data/br/eventos.json', { cache: 'no-cache' }).then(r => r.json()),
+    fetch('data/en/clubes.json', { cache: 'no-cache' }).then(r => r.json()),
+    fetch('data/en/jogadores.json', { cache: 'no-cache' }).then(r => r.json()),
+    fetch('data/en/eventos.json', { cache: 'no-cache' }).then(r => r.json()),
   ]);
 
   const clubes = [...clubesBR, ...clubesEN];

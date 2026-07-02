@@ -313,7 +313,7 @@ input, select { font-family: inherit; font-size: 13px; }
 .btn-reset:hover { background: rgba(248,81,73,.1); }
 
 /* ─── TABELAS ───────────────────────────────────────────────────────────────── */
-.tabs { display: flex; gap: 4px; padding: 8px 12px 0; border-bottom: 1px solid var(--border); overflow-x: auto; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; row-gap: 2px; padding: 8px 12px 0; border-bottom: 1px solid var(--border); }
 
 .tab-btn {
   background: transparent;

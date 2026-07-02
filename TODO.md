@@ -50,3 +50,8 @@ O Carioca div1 foi calibrado (ρ 0.42→0.59; Flamengo 10%→33%, co-favorito co
 - [ ] **Football League (EN)**: realinhar prestígio de 1920/21 (Burnley foi campeão — já tem prestígio 85, ok) e avaliar ligar `returno` para a liga inglesa (hoje roda turno único; alinhar com o calendário CRUZADO — returno dobraria para ~42 rodadas).
 - [ ] Rever se `grandezaHistorica` e `prestigio` das outras eras/clubes precisam de ajuste após o alargamento do spread dos regens (μ = 24 + 0.46·métrica).
 - [ ] Reconsiderar o expoente 0.55 apenas com um benchmark cruzado de g/j (ligado ao item de calibração de xGBase acima).
+
+### Gerador de clubes (tools/gerar_clubes.mjs)
+
+- [ ] Adicionar um modo "update" ao gerador para **editar clubes já existentes** a partir da tabela (`tools/clubes_novos.json`). Hoje ele é add-only (idempotente por nome), então ajustes em clubes existentes (ex.: mudar divisão/prestígio) são feitos direto no JSON, o que gera risco de divergência entre a tabela-fonte e `data/br/clubes.json`.
+- [ ] Estender a expansão a mais estados (Pernambuco, Bahia, Paraná) e realinhar o favorito de 1920 do Paulista (campeão real foi o Palestra Itália, não o Paulistano) — ver seção de realismo acima.
