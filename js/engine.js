@@ -2,7 +2,7 @@
 
 // Incrementar quando mudanças estruturais no save state exigirem reinício automático.
 // Saves com versão diferente são descartados e o jogo começa do zero.
-const DATA_VERSION = 6;
+const DATA_VERSION = 7;
 
 // Época de testes: quando true, o estado do mundo não é salvo nem restaurado.
 // Cada reload recomeça do zero em 1920. Colocar em false para reativar a persistência.

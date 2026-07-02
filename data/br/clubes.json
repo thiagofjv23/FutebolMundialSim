@@ -774,5 +774,759 @@
       "nacionais": 5,
       "mundiais": 0
     }
+  },
+  {
+    "club_id": 1000,
+    "nome": "Grêmio Foot-Ball Porto Alegrense",
+    "apelido": "Grêmio",
+    "country_id": 55,
+    "state_id": 43,
+    "divisao": 1,
+    "anoFundacao": 1903,
+    "prestigio": 62,
+    "grandezaHistorica": 82,
+    "financas": 868,
+    "tecnico": {
+      "coach_id": 2000,
+      "nome": "João Carvalho",
+      "estiloTatico": "ofensivo",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3000,
+      "nome": "Estádio da Baixada",
+      "capacidade": 8000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": {
+      "locais": 738,
+      "nacionais": 15,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1001,
+    "nome": "Sport Club Internacional",
+    "apelido": "Internacional",
+    "country_id": 55,
+    "state_id": 43,
+    "divisao": 1,
+    "anoFundacao": 1909,
+    "prestigio": 58,
+    "grandezaHistorica": 82,
+    "financas": 812,
+    "tecnico": {
+      "coach_id": 2001,
+      "nome": "Antônio Cardoso",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3001,
+      "nome": "Estádio dos Eucaliptos",
+      "capacidade": 6000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": {
+      "locais": 663,
+      "nacionais": 13,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1002,
+    "nome": "Rio Grande Foot-Ball Club",
+    "apelido": "Rio Grande",
+    "country_id": 55,
+    "state_id": 43,
+    "divisao": 1,
+    "anoFundacao": 1900,
+    "prestigio": 46,
+    "grandezaHistorica": 35,
+    "financas": 644,
+    "tecnico": {
+      "coach_id": 2002,
+      "nome": "Francisco Vieira",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 3002,
+      "nome": "Estádio Aldo Dapuzzo",
+      "capacidade": 4000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 458,
+      "nacionais": 9,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1003,
+    "nome": "Grêmio Esportivo Brasil",
+    "apelido": "Brasil de Pelotas",
+    "country_id": 55,
+    "state_id": 43,
+    "divisao": 1,
+    "anoFundacao": 1911,
+    "prestigio": 44,
+    "grandezaHistorica": 38,
+    "financas": 616,
+    "tecnico": {
+      "coach_id": 2003,
+      "nome": "Pedro Freitas",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3003,
+      "nome": "Estádio Bento Freitas",
+      "capacidade": 3000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 426,
+      "nacionais": 9,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1004,
+    "nome": "Guarany Futebol Clube",
+    "apelido": "Guarany de Bagé",
+    "country_id": 55,
+    "state_id": 43,
+    "divisao": 1,
+    "anoFundacao": 1907,
+    "prestigio": 42,
+    "grandezaHistorica": 34,
+    "financas": 588,
+    "tecnico": {
+      "coach_id": 2004,
+      "nome": "Manuel Braga",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 3004,
+      "nome": "Estádio Pedra Moura",
+      "capacidade": 2500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 396,
+      "nacionais": 8,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1005,
+    "nome": "Grêmio Foot-Ball Nacional",
+    "apelido": "Nacional-RS",
+    "country_id": 55,
+    "state_id": 43,
+    "divisao": 1,
+    "anoFundacao": 1913,
+    "prestigio": 38,
+    "grandezaHistorica": 26,
+    "financas": 532,
+    "tecnico": {
+      "coach_id": 2005,
+      "nome": "Luís Fernandes",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3005,
+      "nome": "Campo da Baixada Nacional",
+      "capacidade": 2000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 337,
+      "nacionais": 7,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1006,
+    "nome": "Esporte Clube Americano",
+    "apelido": "Americano-RS",
+    "country_id": 55,
+    "state_id": 43,
+    "divisao": 1,
+    "anoFundacao": 1912,
+    "prestigio": 38,
+    "grandezaHistorica": 28,
+    "financas": 532,
+    "tecnico": {
+      "coach_id": 2006,
+      "nome": "Carlos Oliveira",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 3006,
+      "nome": "Campo do Americano",
+      "capacidade": 2000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 337,
+      "nacionais": 7,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1007,
+    "nome": "Esporte Clube São José",
+    "apelido": "São José-RS",
+    "country_id": 55,
+    "state_id": 43,
+    "divisao": 1,
+    "anoFundacao": 1913,
+    "prestigio": 34,
+    "grandezaHistorica": 24,
+    "financas": 476,
+    "tecnico": {
+      "coach_id": 2007,
+      "nome": "Paulo Martins",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3007,
+      "nome": "Estádio Passo da Areia",
+      "capacidade": 1800,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 282,
+      "nacionais": 6,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1008,
+    "nome": "Esporte Clube Força e Luz",
+    "apelido": "Força e Luz",
+    "country_id": 55,
+    "state_id": 43,
+    "divisao": 1,
+    "anoFundacao": 1913,
+    "prestigio": 32,
+    "grandezaHistorica": 22,
+    "financas": 448,
+    "tecnico": {
+      "coach_id": 2008,
+      "nome": "Mário Barbosa",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 3008,
+      "nome": "Campo da Força e Luz",
+      "capacidade": 1500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 256,
+      "nacionais": 5,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1009,
+    "nome": "Esporte Clube Cruzeiro",
+    "apelido": "Cruzeiro-RS",
+    "country_id": 55,
+    "state_id": 43,
+    "divisao": 1,
+    "anoFundacao": 1913,
+    "prestigio": 34,
+    "grandezaHistorica": 25,
+    "financas": 476,
+    "tecnico": {
+      "coach_id": 2009,
+      "nome": "Osvaldo Nunes",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3009,
+      "nome": "Estádio do Cristal",
+      "capacidade": 1800,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 282,
+      "nacionais": 6,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1010,
+    "nome": "Clube Atlético Mineiro",
+    "apelido": "Atlético-MG",
+    "country_id": 55,
+    "state_id": 31,
+    "divisao": 1,
+    "anoFundacao": 1908,
+    "prestigio": 56,
+    "grandezaHistorica": 85,
+    "financas": 784,
+    "tecnico": {
+      "coach_id": 2010,
+      "nome": "Raul Andrade",
+      "estiloTatico": "ofensivo",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3010,
+      "nome": "Estádio Prado Mineiro",
+      "capacidade": 6000,
+      "nivelInfraestrutura": 2
+    },
+    "torcida": {
+      "locais": 627,
+      "nacionais": 13,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1011,
+    "nome": "América Futebol Clube",
+    "apelido": "América-MG",
+    "country_id": 55,
+    "state_id": 31,
+    "divisao": 1,
+    "anoFundacao": 1912,
+    "prestigio": 52,
+    "grandezaHistorica": 55,
+    "financas": 728,
+    "tecnico": {
+      "coach_id": 2011,
+      "nome": "Nilo Campos",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3011,
+      "nome": "Estádio dos Castelões",
+      "capacidade": 5000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 557,
+      "nacionais": 11,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1012,
+    "nome": "Villa Nova Atlético Clube",
+    "apelido": "Villa Nova",
+    "country_id": 55,
+    "state_id": 31,
+    "divisao": 1,
+    "anoFundacao": 1908,
+    "prestigio": 44,
+    "grandezaHistorica": 40,
+    "financas": 616,
+    "tecnico": {
+      "coach_id": 2012,
+      "nome": "Artur Lopes",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 3012,
+      "nome": "Estádio Castor Cifuentes",
+      "capacidade": 3000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 426,
+      "nacionais": 9,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1013,
+    "nome": "Yale Atlético Clube",
+    "apelido": "Yale",
+    "country_id": 55,
+    "state_id": 31,
+    "divisao": 1,
+    "anoFundacao": 1912,
+    "prestigio": 38,
+    "grandezaHistorica": 25,
+    "financas": 532,
+    "tecnico": {
+      "coach_id": 2013,
+      "nome": "Edmundo Santos",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3013,
+      "nome": "Campo do Yale",
+      "capacidade": 2000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 337,
+      "nacionais": 7,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1014,
+    "nome": "Sete de Setembro Futebol Clube",
+    "apelido": "Sete de Setembro",
+    "country_id": 55,
+    "state_id": 31,
+    "divisao": 1,
+    "anoFundacao": 1917,
+    "prestigio": 34,
+    "grandezaHistorica": 22,
+    "financas": 476,
+    "tecnico": {
+      "coach_id": 2014,
+      "nome": "Waldemar Rodrigues",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 3014,
+      "nome": "Campo do Sete",
+      "capacidade": 1800,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 282,
+      "nacionais": 6,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1015,
+    "nome": "Calafate Futebol Clube",
+    "apelido": "Calafate",
+    "country_id": 55,
+    "state_id": 31,
+    "divisao": 1,
+    "anoFundacao": 1915,
+    "prestigio": 32,
+    "grandezaHistorica": 20,
+    "financas": 448,
+    "tecnico": {
+      "coach_id": 2015,
+      "nome": "Albino Nascimento",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3015,
+      "nome": "Campo do Calafate",
+      "capacidade": 1500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 256,
+      "nacionais": 5,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1016,
+    "nome": "Palmeiras Futebol Clube de Belo Horizonte",
+    "apelido": "Palmeiras-MG",
+    "country_id": 55,
+    "state_id": 31,
+    "divisao": 1,
+    "anoFundacao": 1916,
+    "prestigio": 32,
+    "grandezaHistorica": 22,
+    "financas": 448,
+    "tecnico": {
+      "coach_id": 2016,
+      "nome": "Cícero Moreira",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 3016,
+      "nome": "Campo do Palmeiras",
+      "capacidade": 1500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 256,
+      "nacionais": 5,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1017,
+    "nome": "Bello Horizonte Futebol Clube",
+    "apelido": "Bello Horizonte",
+    "country_id": 55,
+    "state_id": 31,
+    "divisao": 1,
+    "anoFundacao": 1913,
+    "prestigio": 36,
+    "grandezaHistorica": 24,
+    "financas": 504,
+    "tecnico": {
+      "coach_id": 2017,
+      "nome": "Benedito Teixeira",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3017,
+      "nome": "Campo da Rua Bahia",
+      "capacidade": 2000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 309,
+      "nacionais": 6,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1018,
+    "nome": "Sociedade Esportiva Palestra Itália",
+    "apelido": "Palestra Itália MG",
+    "country_id": 55,
+    "state_id": 31,
+    "divisao": 1,
+    "anoFundacao": 1921,
+    "prestigio": 40,
+    "grandezaHistorica": 88,
+    "financas": 560,
+    "tecnico": {
+      "coach_id": 2018,
+      "nome": "Henrique Castro",
+      "estiloTatico": "ofensivo",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3018,
+      "nome": "Estádio da Barra",
+      "capacidade": 4000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 366,
+      "nacionais": 7,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1019,
+    "nome": "Internacional Foot-Ball Club de São Paulo",
+    "apelido": "Internacional-SP",
+    "country_id": 55,
+    "state_id": 25,
+    "divisao": 2,
+    "anoFundacao": 1899,
+    "prestigio": 46,
+    "grandezaHistorica": 35,
+    "financas": 644,
+    "tecnico": {
+      "coach_id": 2019,
+      "nome": "Augusto Leite",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3019,
+      "nome": "Chácara da Floresta",
+      "capacidade": 3000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 458,
+      "nacionais": 9,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1020,
+    "nome": "Sport Club Germânia",
+    "apelido": "Germânia",
+    "country_id": 55,
+    "state_id": 25,
+    "divisao": 2,
+    "anoFundacao": 1899,
+    "prestigio": 44,
+    "grandezaHistorica": 30,
+    "financas": 616,
+    "tecnico": {
+      "coach_id": 2020,
+      "nome": "Ernesto Silva",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 3020,
+      "nome": "Campo da Germânia",
+      "capacidade": 2500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 426,
+      "nacionais": 9,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1021,
+    "nome": "Associação Atlética São Bento",
+    "apelido": "São Bento",
+    "country_id": 55,
+    "state_id": 25,
+    "divisao": 2,
+    "anoFundacao": 1914,
+    "prestigio": 42,
+    "grandezaHistorica": 28,
+    "financas": 588,
+    "tecnico": {
+      "coach_id": 2021,
+      "nome": "Alfredo Alves",
+      "estiloTatico": "ofensivo",
+      "formacao": "3-2-5"
+    },
+    "stadium": {
+      "stadium_id": 3021,
+      "nome": "Campo do São Bento",
+      "capacidade": 2500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 396,
+      "nacionais": 8,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1022,
+    "nome": "Mackenzie College",
+    "apelido": "Mackenzie-SP",
+    "country_id": 55,
+    "state_id": 25,
+    "divisao": 2,
+    "anoFundacao": 1898,
+    "prestigio": 40,
+    "grandezaHistorica": 28,
+    "financas": 560,
+    "tecnico": {
+      "coach_id": 2022,
+      "nome": "Abelardo Almeida",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3022,
+      "nome": "Campo do Mackenzie",
+      "capacidade": 2000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 366,
+      "nacionais": 7,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1023,
+    "nome": "Esporte Clube Sírio",
+    "apelido": "Sírio",
+    "country_id": 55,
+    "state_id": 25,
+    "divisao": 2,
+    "anoFundacao": 1917,
+    "prestigio": 34,
+    "grandezaHistorica": 24,
+    "financas": 476,
+    "tecnico": {
+      "coach_id": 2023,
+      "nome": "Rubens Azevedo",
+      "estiloTatico": "defensivo",
+      "formacao": "3-3-4"
+    },
+    "stadium": {
+      "stadium_id": 3023,
+      "nome": "Campo do Sírio",
+      "capacidade": 1800,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 282,
+      "nacionais": 6,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1024,
+    "nome": "Nacional Atlético Clube",
+    "apelido": "Nacional-SP",
+    "country_id": 55,
+    "state_id": 25,
+    "divisao": 2,
+    "anoFundacao": 1919,
+    "prestigio": 36,
+    "grandezaHistorica": 26,
+    "financas": 504,
+    "tecnico": {
+      "coach_id": 2024,
+      "nome": "Olavo Ramos",
+      "estiloTatico": "equilibrado",
+      "formacao": "2-3-5"
+    },
+    "stadium": {
+      "stadium_id": 3024,
+      "nome": "Estádio Nicolau Alayon",
+      "capacidade": 2000,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 309,
+      "nacionais": 6,
+      "mundiais": 0
+    }
+  },
+  {
+    "club_id": 1025,
+    "nome": "Guarani Futebol Clube",
+    "apelido": "Guarani",
+    "country_id": 55,
+    "state_id": 25,
+    "divisao": 2,
+    "anoFundacao": 1911,
+    "prestigio": 40,
+    "grandezaHistorica": 45,
+    "financas": 560,
+    "tecnico": {
+      "coach_id": 2025,
+      "nome": "Silvio Pinto",
+      "estiloTatico": "ofensivo",
+      "formacao": "3-2-5"
+    },
+    "stadium": {
+      "stadium_id": 3025,
+      "nome": "Estádio Brinco de Ouro",
+      "capacidade": 2500,
+      "nivelInfraestrutura": 1
+    },
+    "torcida": {
+      "locais": 366,
+      "nacionais": 7,
+      "mundiais": 0
+    }
   }
 ]
